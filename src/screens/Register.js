@@ -64,6 +64,7 @@ class Register extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("PreferencesSet")}
             style={{
               backgroundColor: "#CC3333",
               height: "14%",
@@ -89,6 +90,7 @@ class Register extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("EmailRegister")}
             style={{
               backgroundColor: "#008000",
               height: "14%",
@@ -101,7 +103,6 @@ class Register extends Component {
             <Text
               style={{
                 color: "#FFFFFF",
-                marginLeft: "5%",
                 fontSize: 20
               }}
             >
@@ -123,7 +124,6 @@ class Register extends Component {
             <Text
               style={{
                 color: "#FFFFFF",
-                marginLeft: "5%",
                 fontSize: 20
               }}
             >
@@ -132,10 +132,11 @@ class Register extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("ListingScreen")}
             style={{
               backgroundColor: "transparent",
               height: "5%",
-              marginBottom: "2%",
+              marginBottom: 15,
               width: "80%",
               alignSelf: "center",
               flexDirection: "row",
@@ -146,7 +147,6 @@ class Register extends Component {
             <Text
               style={{
                 color: "#FFFFFF",
-                marginLeft: "5%",
                 fontSize: 16,
                 borderBottomColor: "#FFFFFF",
                 borderBottomWidth: 1

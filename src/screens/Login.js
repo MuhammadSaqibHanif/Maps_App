@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  KeyboardAvoidingView,
-  TouchableOpacity
-} from "react-native";
-import { Input, Item, Button, Label } from "native-base";
+import { Text, View, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Input } from "react-native-elements";
+import HeaderITI from "../components/HeaderITI";
 
 class Login extends Component {
   constructor(props) {
@@ -16,83 +13,131 @@ class Login extends Component {
     };
   }
 
-  signIn = () => {
-    const { email, password } = this.state;
-  };
-
   render() {
     const { email, password } = this.state;
 
-    // console.log("SignIn this.props >>>", this.props);
-
     return (
-      //   <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <View
         style={{
           flex: 1,
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
           backgroundColor: "#48B693"
         }}
       >
-        <View>
-          <Item stackedLabel style={{ width: "90%", marginBottom: 15 }}>
-            <Label>Eamil</Label>
-            <Input
-              placeholder="Username/Email/Phone"
-              placeholderTextColor="gray"
-              value={email}
-              onChangeText={text => this.setState({ email: text })}
-            />
-          </Item>
-          <Item stackedLabel style={{ width: "90%" }}>
-            <Label>Password</Label>
-            <Input
-              placeholder="Password"
-              secureTextEntry={true}
-              placeholderTextColor="gray"
-              value={password}
-              onChangeText={text => this.setState({ password: text })}
-            />
-          </Item>
-        </View>
-        <TouchableOpacity
+        {/* Header */}
+        <View
           style={{
-            marginTop: 10,
-            width: "90%",
-            alignItems: "flex-end"
+            width: "95%",
+            alignSelf: "center",
+            marginBottom: 10,
+            marginTop: 10
           }}
         >
-          <Text
-            style={{ fontSize: 18, color: "purple" }}
-            // onPress={() => this.props.navigation.navigate("ForgetPassword")}
-          >
-            Forget my password
-          </Text>
-        </TouchableOpacity>
-        <View style={{ marginTop: 20 }}>
-          <Button
-            warning
-            onPress={() => this.signIn()}
+          <HeaderITI
+            first_icon_path={require("../../assets/images/gobackwhite.png")}
+            first_icon_style={{ width: 21, height: 21 }}
+            first_icon_function={() => this.props.navigation.goBack()}
+            middle_text="LOG IN"
+            middle_text_style={{ fontSize: 24, color: "#FFFFFF" }}
+            second_icon_path={{}}
+            second_icon_style={{ width: 21, height: 21 }}
+            second_icon_function={() => true}
+          />
+        </View>
+        {/* Header */}
+
+        <View
+          style={{
+            justifyContent: "space-between",
+            flex: 1
+          }}
+        >
+          <View>
+            <View style={{ width: "90%", alignSelf: "center", marginTop: 30 }}>
+              <View style={{ marginBottom: 20 }}>
+                <Input
+                  label="Email"
+                  labelStyle={{ color: "#FFFFFF" }}
+                  placeholder="Enter your email address"
+                  placeholderTextColor="gray"
+                  value={email}
+                  inputContainerStyle={{
+                    borderColor: "#FFFFFF"
+                  }}
+                  rightIcon={<Icon name="user" size={24} color="white" />}
+                  onChangeText={text => this.setState({ email: text })}
+                />
+                <Text style={{ color: "red", marginTop: 5, marginLeft: 10 }}>
+                  Enter your email address
+                </Text>
+              </View>
+
+              <View>
+                <Input
+                  label="Password"
+                  labelStyle={{ color: "#FFFFFF" }}
+                  placeholder="Enter your password"
+                  placeholderTextColor="gray"
+                  style={{ marginTop: 10 }}
+                  value={password}
+                  inputContainerStyle={{
+                    borderColor: "#FFFFFF"
+                  }}
+                  onChangeText={text => this.setState({ password: text })}
+                  secureTextEntry={true}
+                  rightIcon={<Icon name="user" size={24} color="white" />}
+                />
+                <Text style={{ color: "red", marginTop: 5, marginLeft: 10 }}>
+                  Enter your email address. Enter your email address. Enter your
+                  email address
+                </Text>
+              </View>
+            </View>
+
+            <TouchableOpacity
+              style={{
+                marginTop: 30,
+                width: "100%",
+                alignItems: "center"
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#FFFFFF",
+                  borderBottomColor: "#FFFFFF",
+                  borderBottomWidth: 1
+                }}
+              >
+                Forgot your password?
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity
             style={{
-              borderRadius: 5
+              backgroundColor: "#C0C0C0",
+              height: 50,
+              marginTop: 30,
+              flexDirection: "row",
+              justifyContent: "center",
+              marginBottom: 20,
+              alignItems: "center",
+              width: "85%",
+              marginLeft: "auto",
+              marginRight: "auto"
             }}
           >
             <Text
               style={{
-                color: "white",
-                marginLeft: 70,
-                marginRight: 70,
+                color: "#48B693",
                 fontSize: 20
               }}
             >
-              Login
+              Enter Your Email Address
             </Text>
-          </Button>
+          </TouchableOpacity>
         </View>
       </View>
-      //   </KeyboardAvoidingView>
     );
   }
 }
