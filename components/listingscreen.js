@@ -380,7 +380,9 @@ class Listings extends React.Component {
             />
             <Text style={{ fontSize: 15 }}>Saved</Text>
           </View>
-          <View>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("MyAccount")}
+          >
             <Icon
               containerStyle={{ alignItems: "flex-start" }}
               name="account"
@@ -389,7 +391,7 @@ class Listings extends React.Component {
               size={30}
             />
             <Text style={{ fontSize: 15 }}>Account</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
