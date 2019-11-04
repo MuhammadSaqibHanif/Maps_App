@@ -150,7 +150,7 @@ class MenuDrawer extends React.Component {
                     color: "red"
                   }}
                 >
-                  Sign Outtt
+                  Sign Out
                 </Text>
               </TouchableOpacity>
             </View>

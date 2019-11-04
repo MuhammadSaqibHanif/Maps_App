@@ -10,7 +10,11 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
-  TextInput
+  TextInput,
+  Platform,
+  StyleSheet,
+  Modal,
+  Alert
 } from "react-native";
 // Import { RTLView, RTLText } from react-native-rtl-layout
 import {
@@ -27,13 +31,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: "#f8f9fa"
-  }
-};
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 class Listings extends React.Component {
   constructor(props) {
@@ -41,9 +39,20 @@ class Listings extends React.Component {
     this.state = {
       search: "",
       upCircle: true,
-      downcircle: false
+      downcircle: false,
+      Alert_Visibility: false,
+      location: false
     };
   }
+
+  Show_Custom_Alert(visible) {
+    this.setState({ Alert_Visibility: visible });
+  }
+
+  ok_Button = () => {
+    Alert.alert("OK Button Clicked.");
+  };
+
   taponUpDown = () => {
     this.setState({
       upCircle: !this.state.upCircle,
@@ -123,11 +132,228 @@ class Listings extends React.Component {
             alignItems: "center"
           }}
         />
+
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-around",
             marginTop: 5
+            // marginLeft:'5%',
+            // backgroundColor:"red",
+            // width:'90%',
+            // borderWidth:1
+          }}
+        >
+          {this.state.location == true ? (
+            <View style={{ flexDirection: "row" }}>
+              <View
+                style={{ flexDirection: "row", borderWidth: 1, height: 50 }}
+              >
+                <View style={{ marginTop: "auto", marginBottom: "auto" }}>
+                  <Icon type="EvilIcons" name="search" />
+                </View>
+                <View style={{ width: 250 }}>
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "#41BB94",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "row",
+                      width: wp("50%"),
+                      borderRadius: 8,
+                      height: hp("5%"),
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                      marginLeft: "5%"
+                    }}
+                    onPress={() => this.setState({ location: true })}
+                  >
+                    <Icon
+                      name="target-two"
+                      type="foundation"
+                      color="black"
+                      size={30}
+                    />
+                    <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                      Current Locations
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                {/* </Item> */}
+
+                {/* </Header> */}
+              </View>
+              <Text
+                style={{
+                  marginBottom: "auto",
+                  marginTop: "auto",
+                  fontSize: 16,
+                  marginLeft: "5%"
+                }}
+              >
+                Cancel
+              </Text>
+            </View>
+          ) : (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginTop: 5
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#41BB94",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  width: wp("40%"),
+                  borderRadius: 8,
+                  height: hp("7%")
+                }}
+                onPress={() => this.setState({ location: true })}
+              >
+                <Icon
+                  name="target-two"
+                  type="foundation"
+                  color="black"
+                  size={30}
+                />
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  Current Locations
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#f6e9e0",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  width: wp("25%"),
+                  borderRadius: 8,
+                  height: hp("7%")
+                }}
+                onPress={() => this.props.navigation.navigate("Filters")}
+              >
+                <Icon name="filter" type="foundation" color="black" size={30} />
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>Filter</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#f6e9e0",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  width: wp("25%"),
+                  borderRadius: 8,
+                  height: hp("7%")
+                }}
+                onPress={() => {
+                  this.Show_Custom_Alert(true);
+                }}
+              >
+                <Icon
+                  name="sort"
+                  type="font-awesome-5"
+                  color="black"
+                  size={30}
+                />
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>Sort</Text>
+              </TouchableOpacity>
+              {this.state.Alert_Visibility && (
+                <Modal
+                  visible={this.state.Alert_Visibility}
+                  transparent={true}
+                  backdropColor="black"
+                  animationType={"fade"}
+                  onRequestClose={() => {
+                    this.Show_Custom_Alert(!this.state.Alert_Visibility);
+                  }}
+                >
+                  <View
+                    style={{
+                      flex: 1,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "rgba(0,0,0,0.5)"
+                    }}
+                  >
+                    <View style={styles.Alert_Main_View}>
+                      <View style={{ flexDirection: "row" }}>
+                        <TouchableOpacity>
+                          <Text
+                            style={{
+                              fontWeight: "bold",
+                              marginLeft: 100,
+                              fontSize: 18,
+                              marginTop: 12
+                            }}
+                          >
+                            Sort
+                          </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                          <Text
+                            style={{
+                              fontWeight: "bold",
+                              marginLeft: 100,
+                              fontSize: 18,
+                              marginTop: 12
+                            }}
+                            onPress={() => {
+                              this.Show_Custom_Alert(
+                                !this.state.Alert_Visibility
+                              );
+                            }}
+                          >
+                            X
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+
+                      <TouchableOpacity>
+                        <Text style={styles.Alert_Message}>Recommended </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity>
+                        <Text style={styles.Alert_Message}>Trending</Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity>
+                        <Text style={styles.Alert_Message}>
+                          Most Recently Updated{" "}
+                        </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity>
+                        <Text style={styles.Alert_Message}>Most Popular</Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity>
+                        <Text style={styles.Alert_Message}>
+                          Price: Low - High{" "}
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
+                        <Text style={styles.Alert_Message}>
+                          Price: High - Low{" "}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </Modal>
+              )}
+            </View>
+          )}
+        </View>
+        {/* <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginTop: 5,
+          
           }}
         >
           <TouchableOpacity
@@ -140,10 +366,11 @@ class Listings extends React.Component {
               borderRadius: 8,
               height: hp("7%")
             }}
+            onPress={()=>this.setState({location: true})}
           >
             <Icon name="target-two" type="foundation" color="black" size={30} />
             <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-              Current Location
+              Current Locations
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -156,6 +383,7 @@ class Listings extends React.Component {
               borderRadius: 8,
               height: hp("7%")
             }}
+            onPress={()=>this.props.navigation.navigate("Filters")}
           >
             <Icon name="filter" type="foundation" color="black" size={30} />
             <Text style={{ fontSize: 16, fontWeight: "bold" }}>Filter</Text>
@@ -170,11 +398,56 @@ class Listings extends React.Component {
               borderRadius: 8,
               height: hp("7%")
             }}
+            onPress={() => { this.Show_Custom_Alert(true) }}
           >
             <Icon name="sort" type="font-awesome-5" color="black" size={30} />
             <Text style={{ fontSize: 16, fontWeight: "bold" }}>Sort</Text>
           </TouchableOpacity>
-        </View>
+          {this.state.Alert_Visibility &&
+          <Modal
+          visible={this.state.Alert_Visibility}
+          transparent={true}
+          backdropColor="black"
+          animationType={"fade"}
+          onRequestClose={ () => { this.Show_Custom_Alert(!this.state.Alert_Visibility)} } >
+            <View style={{ flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                <View style={styles.Alert_Main_View}>
+                    <View style={{flexDirection:'row'}}>
+                        <TouchableOpacity>
+                           <Text style={{fontWeight:'bold',marginLeft:100,fontSize:18,marginTop:12}}>Sort</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity>
+                       <Text style={{fontWeight:'bold',marginLeft:100,fontSize:18,marginTop:12}} onPress={() => { this.Show_Custom_Alert(!this.state.Alert_Visibility)} }>X</Text>
+                       </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity>
+                    <Text style={styles.Alert_Message}>Recommended </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                    <Text  style={styles.Alert_Message}>Trending</Text>  
+                   </TouchableOpacity>
+
+                    <TouchableOpacity>
+                    <Text style={styles.Alert_Message}>Most Recently Updated </Text>
+                   </TouchableOpacity>
+
+                    <TouchableOpacity>
+                    <Text  style={styles.Alert_Message}>Most Popular</Text> 
+                  </TouchableOpacity>
+
+                    <TouchableOpacity>
+                    <Text style={styles.Alert_Message}>Price: Low - High </Text>
+                  </TouchableOpacity>
+                    <TouchableOpacity>
+                      <Text  style={styles.Alert_Message}>Price: High - Low </Text>   
+                    </TouchableOpacity>                  
+                </View> 
+            </View>
+        </Modal>
+          }
+        </View> */}
         <Text
           style={{
             fontSize: 30,
@@ -183,7 +456,7 @@ class Listings extends React.Component {
             marginTop: 10
           }}
         >
-          Recommends For You
+          Recommends For Your
         </Text>
 
         <FlatList
@@ -216,16 +489,20 @@ class Listings extends React.Component {
                 }}
               >
                 <View style={{ width: wp("60%") }}>
-                  <Text
-                    style={{
-                      fontSize: 25,
-                      fontWeight: "bold",
-                      marginLeft: 5,
-                      marginTop: 5
-                    }}
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate("FreeMap")}
                   >
-                    Best Food
-                  </Text>
+                    <Text
+                      style={{
+                        fontSize: 25,
+                        fontWeight: "bold",
+                        marginLeft: 5,
+                        marginTop: 5
+                      }}
+                    >
+                      Best Food
+                    </Text>
+                  </TouchableOpacity>
                   <Text style={{ fontSize: 18, marginLeft: 5, marginTop: 5 }}>
                     na aliqua. Ut enim ad minim veniam, quis nostrud
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -257,7 +534,7 @@ class Listings extends React.Component {
                       onFinishRating={this.ratingCompleted}
                     />
                     <Text style={{ fontSize: 18, marginLeft: 10 }}>
-                      17 reviews
+                      17 reviewss
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>
@@ -288,13 +565,27 @@ class Listings extends React.Component {
                     </View>
                   </View>
                 </View>
-                <View style={{ width: wp("40%") }}>
-                  <Image
+                <View
+                // style={{ width: wp("40%") }}
+                >
+                  {/* <Image
                     source={{
                       uri: "https://staticmapmaker.com/img/google@2x.png"
                     }}
                     style={{ width: 140, height: 225 }}
-                  />
+                  /> */}
+                  <View style={styles.containerm}>
+                    <MapView
+                      provider={PROVIDER_GOOGLE}
+                      style={styles.map}
+                      region={{
+                        latitude: 37.78825,
+                        longitude: -122.4324,
+                        latitudeDelta: 0.015,
+                        longitudeDelta: 0.0121
+                      }}
+                    />
+                  </View>
                   <View
                     style={{
                       flexDirection: "row",
@@ -327,75 +618,78 @@ class Listings extends React.Component {
             );
           }}
         />
-        <View
-          style={{
-            backgroundColor: "white",
-            borderTopColor: "lightgray",
-            borderTopWidth: 1,
-            height: hp("8%"),
-            width: wp("100%"),
-            position: "absolute",
-            bottom: 0,
-            flexDirection: "row",
-            justifyContent: "space-between"
-          }}
-        >
-          <View>
-            <Icon
-              containerStyle={{ alignItems: "flex-start" }}
-              name="search"
-              type="feather"
-              color="black"
-              size={30}
-            />
-            <Text style={{ fontSize: 15 }}>Explore</Text>
-          </View>
-          <View>
-            <Icon
-              containerStyle={{ alignItems: "flex-start" }}
-              name="pencil"
-              type="material-community"
-              color="black"
-              size={30}
-            />
-            <Text style={{ fontSize: 15 }}>Create</Text>
-          </View>
-          <View>
-            <Icon
-              containerStyle={{ alignItems: "flex-start" }}
-              name="map-marker-radius"
-              type="material-community"
-              color="black"
-              size={30}
-            />
-            <Text style={{ fontSize: 15 }}>Map</Text>
-          </View>
-          <View>
-            <Icon
-              containerStyle={{ alignItems: "flex-start" }}
-              name="heart"
-              type="material-community"
-              color="black"
-              size={30}
-            />
-            <Text style={{ fontSize: 15 }}>Saved</Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("MyAccount")}
-          >
-            <Icon
-              containerStyle={{ alignItems: "flex-start" }}
-              name="account"
-              type="material-community"
-              color="black"
-              size={30}
-            />
-            <Text style={{ fontSize: 15 }}>Account</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
 }
 
 export default Listings;
+
+const styles = StyleSheet.create({
+  MainContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: Platform.OS == "ios" ? 20 : 0
+    //  borderWidth:2
+  },
+
+  Alert_Main_View: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    height: 380,
+    width: "90%",
+    borderWidth: 0.5,
+    //   borderColor: '#fff',
+    borderRadius: 7
+  },
+
+  Alert_Title: {
+    fontSize: 20,
+    color: "black",
+    textAlign: "center",
+    padding: 10,
+    fontWeight: "bold"
+    //   height: '28%'
+  },
+
+  Alert_Message: {
+    fontSize: 22,
+    color: "black",
+    textAlign: "center",
+    padding: 10
+    // height: '42%'
+  },
+
+  buttonStyle: {
+    width: "50%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+    // backgroundColor:'yellow'
+  },
+
+  TextStyle: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 22,
+    marginTop: -5,
+    fontWeight: "bold"
+    // backgroundColor:'red'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f9fa"
+  },
+  containerm: {
+    // ...StyleSheet.absoluteFillObject,
+    height: 200,
+    width: 200,
+    justifyContent: "flex-end",
+    alignItems: "center"
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject
+  }
+});

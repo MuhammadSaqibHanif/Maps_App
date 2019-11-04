@@ -71,6 +71,7 @@ class MyAccount extends Component {
 
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity
+           onPress={() => this.props.navigation.navigate("Saved")}
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -111,6 +112,7 @@ class MyAccount extends Component {
               borderTopWidth: 1,
               paddingVertical: 8
             }}
+            onPress={()=>this.props.navigation.navigate("Reviews")}
           >
             <Text style={{ fontSize: 16 }}>Reviews</Text>
             <Icon name="home" />
@@ -142,12 +144,14 @@ class MyAccount extends Component {
               borderTopWidth: 1,
               paddingVertical: 8
             }}
+            onPress={() => this.props.navigation.navigate("InviteFriends")}
           >
             <Text style={{ fontSize: 16 }}>Invite Friends</Text>
             <Icon name="home" />
           </TouchableOpacity>
 
           <TouchableOpacity
+           onPress={() => this.props.navigation.navigate("Earning")}
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -172,6 +176,7 @@ class MyAccount extends Component {
               borderTopWidth: 1,
               paddingVertical: 8
             }}
+            onPress={() => this.props.navigation.navigate("Help")}
           >
             <Text style={{ fontSize: 16 }}>Help</Text>
             <Icon name="home" />
@@ -187,6 +192,7 @@ class MyAccount extends Component {
               borderTopWidth: 1,
               paddingVertical: 8
             }}
+            onPress={() => this.props.navigation.navigate("TermsService")}
           >
             <Text style={{ fontSize: 16 }}>Terms of Service</Text>
             <Icon name="home" />
@@ -202,6 +208,7 @@ class MyAccount extends Component {
               borderTopWidth: 1,
               paddingVertical: 8
             }}
+            onPress={() => this.props.navigation.navigate("FeedBack")}
           >
             <Text style={{ fontSize: 16 }}>Give Feedback</Text>
             <Icon name="home" />

@@ -53,37 +53,32 @@ class Notifications extends Component {
                 paddingVertical: 8
               }}
             >
-              <Text style={{ fontSize: 16 }}>Email Notificatons</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Email Notificatons</Text>
 
-              <Switch
-                value={false}
-                onValueChange={val => console.log(val)}
-                disabled={false}
-                activeText={"On"}
-                inActiveText={"Off"}
-                circleSize={20}
-                barHeight={1}
-                circleBorderWidth={3}
-                backgroundActive={"green"}
-                backgroundInactive={"gray"}
-                circleActiveColor={"#30a566"}
-                circleInActiveColor={"#000000"}
-                changeValueImmediately={true}
-                // renderInsideCircle={() => <CustomComponent />} // custom component to render inside the Switch circle (Text, Image, etc.)
-                changeValueImmediately={true} // if rendering inside circle, change state immediately or wait for animation to complete
-                innerCircleStyle={{
-                  alignItems: "center",
-                  justifyContent: "center"
-                }} // style for inner animated circle for what you (may) be rendering inside the circle
-                outerCircleStyle={{}} // style for outer animated circle
-                renderActiveText={false}
-                renderInActiveText={false}
-                switchLeftPx={2} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
-                switchRightPx={2} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
-                switchWidthMultiplier={2} // multipled by the `circleSize` prop to calculate total width of the Switch
-              />
+             
             </View>
-
+            <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
+            <Text style={{ marginLeft: 15, width: 250 }}>Occassionally,we'd like to on email aboutnew map that you may be intrested in or new features on the app</Text>
+            <View style={{marginLeft:12}}>
+                <Switch
+                  // marginLeft={"100%"}
+                  value={map_update}
+                  onValueChange={val => {
+                    this.setState({
+                      map_update: !map_update
+                    });
+                  }}
+                  disabled={false}
+                  activeText="On"
+                  inActiveText={"Off"}
+                  backgroundActive={"green"}
+                  backgroundInactive={"gray"}
+                  circleActiveColor={"#30a566"}
+                  circleInActiveColor={"#000000"}
+                  // style={{backgroundColor:"yellow"}}
+                />
+                </View>
+              </View>
             <View
               onPress={() => this.props.navigation.navigate("PreferencesSet")}
               style={{
@@ -92,88 +87,165 @@ class Notifications extends Component {
                 width: "90%",
                 alignSelf: "center",
                 borderTopColor: "gray",
-                borderTopWidth: 1,
+                // borderTopWidth: 1,
                 paddingVertical: 8
               }}
             >
-              <Text style={{ fontSize: 16 }}>My Preferences</Text>
-              <Switch
-                value={map_update}
-                onValueChange={val => {
-                  this.setState({
-                    map_update: !map_update
-                  });
+              <Text style={{ fontSize: 18, fontWeight: 'bold',marginTop:10 }}>Push Notification</Text>
+
+            </View>
+            <View style={{}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "90%",
+                  alignSelf: "center",
+                  borderTopColor: "gray",
+                  // borderTopWidth: 1,
+                  paddingVertical: 8,
+                  // backgroundColor: 'yellow'
                 }}
-                disabled={false}
-                activeText="On"
-                inActiveText={"Off"}
-                backgroundActive={"green"}
-                backgroundInactive={"gray"}
-                circleActiveColor={"#30a566"}
-                circleInActiveColor={"#000000"}
-              />
+              >
+                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Map Updates</Text>
+
+
+              </View>
+              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
+                <Text style={{ marginLeft: 15, width: 250, color: 'gray'}}>When a map you have a saved or purchased has been update by the creator</Text>
+                <View style={{marginLeft:12}}>
+                <Switch
+                  // marginLeft={"100%"}
+                  value={map_update}
+                  onValueChange={val => {
+                    this.setState({
+                      map_update: !map_update
+                    });
+                  }}
+                  disabled={false}
+                  activeText="On"
+                  inActiveText={"Off"}
+                  backgroundActive={"green"}
+                  backgroundInactive={"gray"}
+                  circleActiveColor={"#30a566"}
+                  circleInActiveColor={"#000000"}
+                  // style={{backgroundColor:"yellow"}}
+                />
+                </View>
+              </View>
+            </View>
+            <View style={{marginTop:10}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "90%",
+                  alignSelf: "center",
+                  borderTopColor: "gray",
+                  // borderTopWidth: 1,
+                  paddingVertical: 8
+                }}
+              >
+                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Permanent Closures</Text>
+               
+              </View>
+              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
+              <Text style={{ marginLeft: 15, width: 250, color: 'gray' }}>When a location is in the map you have created become permanently closed so that you can remove it friom your map</Text>
+              <View style={{marginLeft:12}}>
+              <Switch
+                  value={map_update}
+                  onValueChange={val => {
+                    this.setState({
+                      map_update: !map_update
+                    });
+                  }}
+                  disabled={false}
+                  activeText="On"
+                  inActiveText={"Off"}
+                  backgroundActive={"green"}
+                  backgroundInactive={"gray"}
+                  circleActiveColor={"#30a566"}
+                  circleInActiveColor={"#000000"}
+                />
+                </View>
+                </View>
             </View>
 
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Reviews</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
+            <View style={{marginTop:10}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "90%",
+                  alignSelf: "center",
+                  borderTopColor: "gray",
+                  // borderTopWidth: 1,
+                  paddingVertical: 8
+                }}
+              >
+                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Purchases/Save</Text>
+                
+              </View>
+              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
+              <Text style={{ marginLeft: 15, width: 250, color: 'gray' }}>When a map you have created purchased or save by anothert user</Text>
+              <View style={{marginLeft:12}}>
+              <Switch
+                  value={map_update}
+                  onValueChange={val => {
+                    this.setState({
+                      map_update: !map_update
+                    });
+                  }}
+                  disabled={false}
+                  activeText="On"
+                  inActiveText={"Off"}
+                  backgroundActive={"green"}
+                  backgroundInactive={"gray"}
+                  circleActiveColor={"#30a566"}
+                  circleInActiveColor={"#000000"}
+                />
+                </View>
+                </View>
+            </View>
 
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Notifications</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Invite Friends</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>My Earnings</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
-
+            <View style={{marginTop:10}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "90%",
+                  alignSelf: "center",
+                  borderTopColor: "gray",
+                  // borderTopWidth: 1,
+                  paddingVertical: 8
+                }}
+              >
+                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Reviews</Text>
+                
+              </View>
+              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
+              <Text style={{ marginLeft: 15, width: 250, color: 'gray' }}>When a map you have created or received a review from another user</Text>
+              <View style={{marginLeft:12}}>
+              <Switch
+                  value={map_update}
+                  onValueChange={val => {
+                    this.setState({
+                      map_update: !map_update
+                    });
+                  }}
+                  disabled={false}
+                  activeText="On"
+                  inActiveText={"Off"}
+                  backgroundActive={"green"}
+                  backgroundInactive={"gray"}
+                  circleActiveColor={"#30a566"}
+                  circleInActiveColor={"#000000"}
+                  style={{}}
+                />
+                </View>
+                </View>
+            </View>
+            {/* 
             <TouchableOpacity
               style={{
                 flexDirection: "row",
@@ -232,7 +304,7 @@ class Notifications extends Component {
             >
               <Text style={{ fontSize: 16 }}>Log Out</Text>
               <Icon name="home" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </View>
