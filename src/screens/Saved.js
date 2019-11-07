@@ -101,11 +101,11 @@ class Saved extends Component {
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
               Created by your
             </Text>
-            <View style={{ borderWidth: 0.5, borderRadius: 10 }}>
+            <View style={{ borderWidth: 0.5, borderRadius: 10, marginTop: 10 }}>
               <Item>
                 <Icon name="ios-search" />
                 <Input
-                  placeholder="Search"
+                  placeholder="Search by map name..."
                   onChangeText={() => this.setState({ text: true })}
                 />
               </Item>
@@ -118,7 +118,13 @@ class Saved extends Component {
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                 >
-                  <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                  <Card
+                    style={{
+                      width: 200,
+                      justifyContent: "flex-end",
+                      marginLeft: 20
+                    }}
+                  >
                     <View style={styles.container}>
                       <MapView
                         provider={PROVIDER_GOOGLE}
@@ -240,7 +246,13 @@ class Saved extends Component {
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                 >
-                  <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                  <Card
+                    style={{
+                      width: 200,
+                      justifyContent: "flex-end",
+                      marginLeft: 20
+                    }}
+                  >
                     <View style={styles.container}>
                       <MapView
                         provider={PROVIDER_GOOGLE}
@@ -354,7 +366,13 @@ class Saved extends Component {
                       </Button>
                     </View>
                   </Card>
-                  <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                  <Card
+                    style={{
+                      width: 200,
+                      justifyContent: "flex-end",
+                      marginLeft: 20
+                    }}
+                  >
                     <View style={styles.container}>
                       <MapView
                         provider={PROVIDER_GOOGLE}
@@ -454,7 +472,14 @@ class Saved extends Component {
                       </Button>
                     </View>
                   </Card>
-                  <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                  <Card
+                    style={{
+                      width: 200,
+                      justifyContent: "flex-end",
+                      marginLeft: 20,
+                      marginRight: 20
+                    }}
+                  >
                     <View style={styles.container}>
                       <MapView
                         provider={PROVIDER_GOOGLE}
@@ -567,14 +592,16 @@ class Saved extends Component {
                 marginLeft: "5%"
               }}
             >
-              <View style={{ marginTop: 5 }}>
+              <View style={{ marginTop: 10 }}>
                 <Text style={{ fontSize: 20, fontWeight: "bold" }}>
                   Saved or Purchased
                 </Text>
-                <View style={{ borderWidth: 0.5, borderRadius: 10 }}>
+                <View
+                  style={{ borderWidth: 0.5, borderRadius: 10, marginTop: 10 }}
+                >
                   <Item>
                     <Icon name="ios-search" />
-                    <Input placeholder="Search" />
+                    <Input placeholder="Search by map name..." />
                   </Item>
                 </View>
               </View>
@@ -585,7 +612,13 @@ class Saved extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
-                <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                <Card
+                  style={{
+                    width: 200,
+                    justifyContent: "flex-end",
+                    marginLeft: 20
+                  }}
+                >
                   <View style={styles.container}>
                     <MapView
                       provider={PROVIDER_GOOGLE}
@@ -686,7 +719,13 @@ class Saved extends Component {
                   </View>
                 </Card>
 
-                <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                <Card
+                  style={{
+                    width: 200,
+                    justifyContent: "flex-end",
+                    marginLeft: 20
+                  }}
+                >
                   <View style={styles.container}>
                     <MapView
                       provider={PROVIDER_GOOGLE}
@@ -786,7 +825,14 @@ class Saved extends Component {
                     </Button>
                   </View>
                 </Card>
-                <Card style={{ width: 200, justifyContent: "flex-end" }}>
+                <Card
+                  style={{
+                    width: 200,
+                    justifyContent: "flex-end",
+                    marginLeft: 20,
+                    marginRight: 20
+                  }}
+                >
                   <View style={styles.container}>
                     <MapView
                       provider={PROVIDER_GOOGLE}

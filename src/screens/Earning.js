@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView
+} from "react-native";
 
 import {
   Container,
@@ -65,7 +71,7 @@ class Earning extends Component {
     console.log("map_update >>>", map_update);
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         {/* Header */}
         <View
           style={{
@@ -79,7 +85,7 @@ class Earning extends Component {
             first_icon_path={{}}
             first_icon_style={{ width: 21, height: 21 }}
             first_icon_function={() => true}
-            middle_text="Saved"
+            middle_text="Your Earnings"
             middle_text_style={{ fontSize: 24, color: "black" }}
             second_icon_path={require("../../assets/images/multiply-black.png")}
             second_icon_style={{ width: 18, height: 18 }}
@@ -87,141 +93,176 @@ class Earning extends Component {
           />
         </View>
         {/* Header */}
+
         <View style={{ marginLeft: "5%", width: "90%" }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Created by you
+          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+            Your Maps
           </Text>
-          <View style={{ borderWidth: 0.5, borderRadius: 10 }}>
+          <View
+            style={{ borderWidth: 0.5, borderRadius: 10, marginBottom: 10 }}
+          >
             <Item>
               <Icon name="ios-search" />
-              <Input placeholder="Search" />
+              <Input placeholder="Search by map name..." />
             </Item>
           </View>
         </View>
-        <View style={{}}>
-          <ScrollView>
-            {/* <View> */}
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              {/* <View style={{marginLeft:'5%'}}> */}
-              <Card style={{ width: 150 }}>
-                <View style={styles.container}>
-                  <MapView
-                    provider={PROVIDER_GOOGLE}
-                    style={styles.map}
-                    region={{
-                      latitude: 37.78825,
-                      longitude: -122.4324,
-                      latitudeDelta: 0.015,
-                      longitudeDelta: 0.0121
-                    }}
-                  />
-                </View>
-                <Text style={{ fontSize: 16 }}>Best Picnic Spots</Text>
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>Free</Text>
+        {/* <View style={{}}> */}
+        <ScrollView>
+          {/* <View> */}
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {/* <View style={{marginLeft:'5%'}}> */}
+            <Card style={{ width: 150, marginLeft: 20, marginRight: 20 }}>
+              <View style={styles.container}>
+                <MapView
+                  provider={PROVIDER_GOOGLE}
+                  style={styles.map}
+                  region={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.015,
+                    longitudeDelta: 0.0121
+                  }}
+                />
+              </View>
+              <Text style={{ fontSize: 16 }}>Best Picnic Spots</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>Free</Text>
 
-                <Text style={{ fontSize: 16, marginTop: 15 }}>
-                  You have made
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "bold", color: "green" }}
-                >
-                  $502
-                </Text>
-                <Text style={{ fontSize: 16 }}>from 81 saved</Text>
-              </Card>
+              <Text style={{ fontSize: 16, marginTop: 15 }}>You have made</Text>
+              <Text
+                style={{ fontSize: 18, fontWeight: "bold", color: "green" }}
+              >
+                $502
+              </Text>
+              <Text style={{ fontSize: 16 }}>from 81 saved</Text>
+            </Card>
 
-              <Card style={{ width: 150 }}>
-                <View style={styles.container}>
-                  <MapView
-                    provider={PROVIDER_GOOGLE}
-                    style={styles.map}
-                    region={{
-                      latitude: 37.78825,
-                      longitude: -122.4324,
-                      latitudeDelta: 0.015,
-                      longitudeDelta: 0.0121
-                    }}
-                  />
-                </View>
-                <Text style={{ fontSize: 16 }}>Best Picnic Spots</Text>
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>Free</Text>
+            <Card style={{ width: 150, marginRight: 20 }}>
+              <View style={styles.container}>
+                <MapView
+                  provider={PROVIDER_GOOGLE}
+                  style={styles.map}
+                  region={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.015,
+                    longitudeDelta: 0.0121
+                  }}
+                />
+              </View>
+              <Text style={{ fontSize: 16 }}>Best Picnic Spots</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>Free</Text>
 
-                <Text style={{ fontSize: 16, marginTop: 15 }}>
-                  You have made
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "bold", color: "green" }}
-                >
-                  $502
-                </Text>
-                <Text style={{ fontSize: 16 }}>from 81 saved</Text>
-              </Card>
+              <Text style={{ fontSize: 16, marginTop: 15 }}>You have made</Text>
+              <Text
+                style={{ fontSize: 18, fontWeight: "bold", color: "green" }}
+              >
+                $502
+              </Text>
+              <Text style={{ fontSize: 16 }}>from 81 saved</Text>
+            </Card>
 
-              <Card style={{ width: 150 }}>
-                <View style={styles.container}>
-                  <MapView
-                    provider={PROVIDER_GOOGLE}
-                    style={styles.map}
-                    region={{
-                      latitude: 37.78825,
-                      longitude: -122.4324,
-                      latitudeDelta: 0.015,
-                      longitudeDelta: 0.0121
-                    }}
-                  />
-                </View>
-                <Text style={{ fontSize: 16 }}>Best Picnic Spots</Text>
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>Free</Text>
+            <Card style={{ width: 150, marginRight: 20 }}>
+              <View style={styles.container}>
+                <MapView
+                  provider={PROVIDER_GOOGLE}
+                  style={styles.map}
+                  region={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.015,
+                    longitudeDelta: 0.0121
+                  }}
+                />
+              </View>
+              <Text style={{ fontSize: 16 }}>Best Picnic Spots</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>Free</Text>
 
-                <Text style={{ fontSize: 16, marginTop: 15 }}>
-                  You have made
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "bold", color: "green" }}
-                >
-                  $502
-                </Text>
-                <Text style={{ fontSize: 16 }}>from 81 saved</Text>
-              </Card>
-              {/* </View> */}
-            </ScrollView>
+              <Text style={{ fontSize: 16, marginTop: 15 }}>You have made</Text>
+              <Text
+                style={{ fontSize: 18, fontWeight: "bold", color: "green" }}
+              >
+                $502
+              </Text>
+              <Text style={{ fontSize: 16 }}>from 81 saved</Text>
+            </Card>
             {/* </View> */}
-
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: "bold",
-                marginTop: 40,
-                marginLeft: "5%"
-              }}
-            >
-              Total Earned :
-              <Text
-                style={{ color: "green", fontSize: 18, fontWeight: "bold" }}
-              >
-                $5895
-              </Text>
-            </Text>
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: "bold",
-                marginTop: 10,
-                marginLeft: "5%"
-              }}
-            >
-              Current Balance :
-              <Text
-                style={{ color: "green", fontSize: 18, fontWeight: "bold" }}
-              >
-                $5895
-              </Text>
-            </Text>
           </ScrollView>
+          {/* </View> */}
+
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: "bold",
+              marginTop: 40,
+              marginLeft: "5%"
+            }}
+          >
+            Total Earned :
+            <Text style={{ color: "green", fontSize: 18, fontWeight: "bold" }}>
+              $5895
+            </Text>
+          </Text>
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: "bold",
+              marginTop: 10,
+              marginLeft: "5%",
+              marginBottom: 20
+            }}
+          >
+            Current Balance :
+            <Text
+              style={{
+                color: "green",
+                fontSize: 18,
+                fontWeight: "bold"
+              }}
+            >
+              $5895
+            </Text>
+          </Text>
+        </ScrollView>
+
+        {/* Footer */}
+        <View
+          style={{
+            // flex: 1,
+            width: "100%",
+            height: 60,
+
+            // width: 50,
+            borderTopColor: "#DCDCDC",
+            borderTopWidth: 1
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: "green",
+              height: 45,
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "85%",
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "auto",
+              marginBottom: "auto"
+            }}
+            onPress={() => this.props.navigation.navigate("ListingScreen")}
+          >
+            <Text
+              style={{
+                color: "black",
+                fontSize: 20
+              }}
+            >
+              Withdraw $8.90
+            </Text>
+          </TouchableOpacity>
         </View>
+        {/* Footer */}
       </View>
     );
   }

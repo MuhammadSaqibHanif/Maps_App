@@ -15,7 +15,7 @@ class InviteFriends extends Component {
   render() {
     const { map_update } = this.state;
 
-    console.log("map_update >>>", map_update);
+    // console.log("map_update >>>", map_update);
 
     return (
       <View>
@@ -40,187 +40,159 @@ class InviteFriends extends Component {
           />
         </View>
         {/* Header */}
-        
-        
-        <View style={{ marginTop: 20 }}>
-            <Text style={{marginLeft:'5%'}}>Love pointer? share the love by inviting your friend to use too</Text>
-        <View>
-          <View style={{
-              backgroundColor:'green',
-              width:'90%',
-              marginLeft:"5%",
-              flexDirection:'row',
-              borderRadius:10,
-              paddingVertical: 10,
-              marginTop:'10%'
-              }}>
-        
-             
-            <Icon name="whatsapp" type="FontAwesome" style={{marginLeft:'30%'}}/>
-            <Text style={{ fontSize: 18, marginLeft:10,fontWeight:'bold'}}>WhatsApp</Text>
-        </View>
-        </View>
-        <View>
-        <View style={{
-              backgroundColor:'green',
-              width:'90%',
-              marginLeft:"5%",
-              flexDirection:'row',
-              borderRadius:10,
-              paddingVertical: 10,
-              marginTop:'10%'
-              }}>
-        
-             
-            <Icon name="envelope" type="EvilIcons" style={{marginLeft:'30%'}}/>
-            <Text style={{ fontSize: 18, marginLeft:10,fontWeight:'bold'}}>Messenger</Text>
-        </View>
-        </View>
-        <View>
-        <View style={{
-              backgroundColor:'green',
-              width:'90%',
-              marginLeft:"5%",
-              flexDirection:'row',
-              borderRadius:10,
-              paddingVertical: 10,
-              marginTop:'10%'
-              }}>
-        
-             
-        <Icon name="envelope" type="EvilIcons" style={{marginLeft:'30%'}}/>
-            <Text style={{ fontSize: 18, marginLeft:10,fontWeight:'bold'}}>Email</Text>
-        </View>
-        </View>
-        <View>
-        <View style={{
-              backgroundColor:'green',
-              width:'90%',
-              marginLeft:"5%",
-              flexDirection:'row',
-              borderRadius:10,
-              paddingVertical: 10,
-              marginTop:'10%'
-              }}>
-        
-             
-        <Icon name="envelope" type="EvilIcons" style={{marginLeft:'30%'}}/>
-            <Text style={{ fontSize: 18, marginLeft:10,fontWeight:'bold'}}>SMS</Text>
-        </View>
-        </View>
-        <View>
-        <View style={{
-              backgroundColor:'green',
-              width:'90%',
-              marginLeft:"5%",
-              flexDirection:'row',
-              borderRadius:10,
-              paddingVertical: 10,
-              marginTop:'10%'
-              }}>
-        
-             
-            <Icon name="paperclip" type="AntDesign" style={{marginLeft:'30%'}}/>
-            <Text style={{ fontSize: 18, marginLeft:10,fontWeight:'bold'}}>Copy Link</Text>
-        </View>
-        </View>
-        <View>
-        <View style={{
-              backgroundColor:'green',
-              width:'90%',
-              marginLeft:"5%",
-              flexDirection:'row',
-              borderRadius:10,
-              paddingVertical: 10,
-              marginTop:'10%'
-              }}>
-        
-             
-            <Icon name="dots-three-horizontal" type="Entypo" style={{marginLeft:'30%'}}/>
-            <Text style={{ fontSize: 18, marginLeft:10,fontWeight:'bold'}}>More</Text>
-        </View>
-        </View>
-          {/* <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("PreferencesSet")}
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "90%",
-              alignSelf: "center",
-              borderTopColor: "gray",
-              borderTopWidth: 1,
-              paddingVertical: 8
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>Messenger</Text>
-           
-          </TouchableOpacity>
 
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "90%",
-              alignSelf: "center",
-              borderTopColor: "gray",
-              borderTopWidth: 1,
-              paddingVertical: 8
-            }}
-            onPress={()=>this.props.navigation.navigate("Reviews")}
-          >
-            <Text style={{ fontSize: 16 }}>Email</Text>
-            
-          </TouchableOpacity>
+        <ScrollView>
+          <View style={{ marginTop: 20 }}>
+            <Text style={{ marginLeft: "5%" }}>
+              Love pointer? share the love by inviting your friend to use too
+            </Text>
+            <View>
+              <View
+                style={{
+                  backgroundColor: "green",
+                  width: "90%",
+                  marginLeft: "5%",
+                  flexDirection: "row",
+                  borderRadius: 10,
+                  paddingVertical: 10,
+                  marginTop: "10%"
+                }}
+              >
+                <Icon
+                  name="whatsapp"
+                  type="FontAwesome"
+                  style={{ marginLeft: "30%" }}
+                />
+                <Text
+                  style={{ fontSize: 18, marginLeft: 10, fontWeight: "bold" }}
+                >
+                  WhatsApp
+                </Text>
+              </View>
+            </View>
+            <View>
+              <View
+                style={{
+                  backgroundColor: "green",
+                  width: "90%",
+                  marginLeft: "5%",
+                  flexDirection: "row",
+                  borderRadius: 10,
+                  paddingVertical: 10,
+                  marginTop: "5%"
+                }}
+              >
+                <Icon
+                  name="envelope"
+                  type="EvilIcons"
+                  style={{ marginLeft: "30%" }}
+                />
+                <Text
+                  style={{ fontSize: 18, marginLeft: 10, fontWeight: "bold" }}
+                >
+                  Messenger
+                </Text>
+              </View>
+            </View>
+            <View>
+              <View
+                style={{
+                  backgroundColor: "green",
+                  width: "90%",
+                  marginLeft: "5%",
+                  flexDirection: "row",
+                  borderRadius: 10,
+                  paddingVertical: 10,
+                  marginTop: "5%"
+                }}
+              >
+                <Icon
+                  name="envelope"
+                  type="EvilIcons"
+                  style={{ marginLeft: "30%" }}
+                />
+                <Text
+                  style={{ fontSize: 18, marginLeft: 10, fontWeight: "bold" }}
+                >
+                  Email
+                </Text>
+              </View>
+            </View>
+            <View>
+              <View
+                style={{
+                  backgroundColor: "green",
+                  width: "90%",
+                  marginLeft: "5%",
+                  flexDirection: "row",
+                  borderRadius: 10,
+                  paddingVertical: 10,
+                  marginTop: "5%"
+                }}
+              >
+                <Icon
+                  name="envelope"
+                  type="EvilIcons"
+                  style={{ marginLeft: "30%" }}
+                />
+                <Text
+                  style={{ fontSize: 18, marginLeft: 10, fontWeight: "bold" }}
+                >
+                  SMS
+                </Text>
+              </View>
+            </View>
+            <View>
+              <View
+                style={{
+                  backgroundColor: "green",
+                  width: "90%",
+                  marginLeft: "5%",
+                  flexDirection: "row",
+                  borderRadius: 10,
+                  paddingVertical: 10,
+                  marginTop: "5%"
+                }}
+              >
+                <Icon
+                  name="paperclip"
+                  type="AntDesign"
+                  style={{ marginLeft: "30%" }}
+                />
+                <Text
+                  style={{ fontSize: 18, marginLeft: 10, fontWeight: "bold" }}
+                >
+                  Copy Link
+                </Text>
+              </View>
+            </View>
 
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Notifications")}
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "90%",
-              alignSelf: "center",
-              borderTopColor: "gray",
-              borderTopWidth: 1,
-              paddingVertical: 8
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>SMS</Text>
-           
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "90%",
-              alignSelf: "center",
-              borderTopColor: "gray",
-              borderTopWidth: 1,
-              paddingVertical: 8
-            }}
-            onPress={() => this.props.navigation.navigate("InviteFriends")}
-          >
-            <Text style={{ fontSize: 16 }}>Copy Link</Text>
-           
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "90%",
-              alignSelf: "center",
-              borderTopColor: "gray",
-              borderTopWidth: 1,
-              paddingVertical: 8
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>More</Text>
-          </TouchableOpacity> */}
-
-       
-          
-       </View>
+            <View>
+              <View
+                style={{
+                  backgroundColor: "green",
+                  width: "90%",
+                  marginLeft: "5%",
+                  flexDirection: "row",
+                  borderRadius: 10,
+                  paddingVertical: 10,
+                  marginTop: "5%"
+                }}
+              >
+                <Icon
+                  name="dots-three-horizontal"
+                  type="Entypo"
+                  style={{ marginLeft: "30%" }}
+                />
+                <Text
+                  style={{ fontSize: 18, marginLeft: 10, fontWeight: "bold" }}
+                >
+                  More
+                </Text>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -74,7 +74,7 @@ class Create extends Component {
     console.log("map_update >>>", map_update);
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         {/* Header */}
         <View
           style={{
@@ -96,62 +96,74 @@ class Create extends Component {
           />
         </View>
         {/* Header */}
-        <View style={{ marginLeft: "5%", width: "90%" }}>
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>Created</Text>
-          <View style={{}}>
-            <Text style={{}}>
-              Tap below to start creating maps of your favourite place
-              recommendation to share withj the world
-            </Text>
-          </View>
-          <Button
-            style={{
-              backgroundColor: "lightgreen",
-              justifyContent: "center",
-              marginTop: 20,
-              borderRadius: 10
-            }}
-            onPress={() => this.props.navigation.navigate("CreatNewMap")}
-          >
-            <Text
-              style={{ textAlign: "center", fontWeight: "bold", fontSize: 18 }}
-            >
-              Creating a New Map
-            </Text>
-          </Button>
-        </View>
 
-        <View
-          style={{
-            borderTopWidth: 1.5,
-            borderTopColor: "gray",
-            marginTop: 30,
-            width: "90%",
-            marginLeft: "5%"
-          }}
-        >
-          <View style={{ marginTop: 15 }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              Add to an Existing Map
-            </Text>
-            <View style={{ borderWidth: 0.5, borderRadius: 10, marginTop: 10 }}>
-              <Item>
-                <Icon name="ios-search" />
-                <Input placeholder="Search" />
-              </Item>
+        <ScrollView>
+          <View style={{ marginLeft: "5%", width: "90%" }}>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>Created</Text>
+            <View style={{}}>
+              <Text style={{}}>
+                Tap below to start creating maps of your favourite place
+                recommendation to share withj the world
+              </Text>
+            </View>
+            <Button
+              style={{
+                backgroundColor: "lightgreen",
+                justifyContent: "center",
+                marginTop: 20,
+                borderRadius: 10
+              }}
+              onPress={() => this.props.navigation.navigate("CreatNewMap")}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: 18
+                }}
+              >
+                Creating a New Map
+              </Text>
+            </Button>
+          </View>
+
+          <View
+            style={{
+              borderTopWidth: 1.5,
+              borderTopColor: "gray",
+              marginTop: 30,
+              width: "90%",
+              marginLeft: "5%"
+            }}
+          >
+            <View style={{ marginTop: 15 }}>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                Add to an Existing Map
+              </Text>
+              <View
+                style={{
+                  borderWidth: 0.5,
+                  borderRadius: 10,
+                  marginTop: 10,
+                  marginBottom: 10
+                }}
+              >
+                <Item>
+                  <Icon name="ios-search" />
+                  <Input placeholder="Search by map name..." />
+                </Item>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={{}}>
-          <ScrollView>
+          <View style={{ marginBottom: 20 }}>
             {/* <View> */}
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
               {/* <View style={{marginLeft:'5%'}}> */}
-              <Card>
+              <Card style={{ marginLeft: 20, marginRight: 20 }}>
                 <View style={styles.container}>
                   <MapView
                     provider={PROVIDER_GOOGLE}
@@ -217,7 +229,7 @@ class Create extends Component {
                 </View>
               </Card>
 
-              <Card>
+              <Card style={{ marginRight: 20 }}>
                 <View style={styles.container}>
                   <MapView
                     provider={PROVIDER_GOOGLE}
@@ -283,7 +295,7 @@ class Create extends Component {
                 </View>
               </Card>
 
-              <Card>
+              <Card style={{ marginRight: 20 }}>
                 <View style={styles.container}>
                   <MapView
                     provider={PROVIDER_GOOGLE}
@@ -348,11 +360,10 @@ class Create extends Component {
                   </Button>
                 </View>
               </Card>
-              {/* </View> */}
             </ScrollView>
             {/* </View> */}
-          </ScrollView>
-        </View>
+          </View>
+        </ScrollView>
       </View>
     );
   }

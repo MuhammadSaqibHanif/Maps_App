@@ -4,7 +4,7 @@ import { Icon, ListItem, List, Left, Right } from "native-base";
 import { Switch } from "react-native-switch";
 import HeaderITI from "../components/HeaderITI";
 // import { Rating, AirbnbRating } from 'react-native-elements';
-import StarRating from 'react-native-star-rating';
+import StarRating from "react-native-star-rating";
 
 class Reviews extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Reviews extends Component {
     console.log("map_update >>>", map_update);
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         {/* Header */}
         <View
           style={{
@@ -51,200 +51,371 @@ class Reviews extends Component {
           />
         </View>
         {/* Header */}
-          <ScrollView>
-        <View style={{}}>
-          <ListItem>
-            <Left>
-              <Text style={{ fontSize: 16 }}>Reviews Given</Text>
-            </Left>
+        <ScrollView contentContainerStyle={{ marginBottom: 100 }}>
+          <View style={{}}>
+            <ListItem>
+              <Left>
+                <Text style={{ fontSize: 16 }}>Reviews Given</Text>
+              </Left>
 
-            <Right>
-              <TouchableOpacity onPress={() => this.setState({ given: true })}>
-                {this.state.given==true
-                ? <Icon name="down" type="AntDesign" onPress={()=>this.setState({given: false})}/>
-                   
-                : <Icon name="right" type="AntDesign" />
-                }
-               
-              </TouchableOpacity>
-            </Right>
-          </ListItem>
-          {this.state.given==true &&
-          <View>
-            <Text
-              style={{ marginLeft: "auto", marginRight: "auto", fontSize: 15 }}
-            >
-              12 Reviews
-            </Text>
-            <View style={{ marginLeft: "5%", flexDirection: "row",marginTop:15 }}>
-              <Icon name="map-marker" type="FontAwesome" />
-              <Text style={{marginLeft:10,fontSize:18,color:'green',fontWeight:'bold'}}>Best Brunch in London</Text>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginLeft:"5%",marginTop:10}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-                 </View>
-                 <View style={{marginLeft:'auto',marginRight:'5%',marginTop:10}}>
-                    <Text style={{color:'gray'}}>19-Feb-2019</Text>
+              <Right>
+                <TouchableOpacity
+                  onPress={() => this.setState({ given: true })}
+                >
+                  {this.state.given == true ? (
+                    <Icon
+                      name="down"
+                      type="AntDesign"
+                      onPress={() => this.setState({ given: false })}
+                    />
+                  ) : (
+                    <Icon name="right" type="AntDesign" />
+                  )}
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+            {this.state.given == true && (
+              <View>
+                <Text
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    fontSize: 15,
+                    marginTop: 10
+                  }}
+                >
+                  12 Reviews
+                </Text>
+                <View
+                  style={{
+                    marginLeft: "5%",
+                    flexDirection: "row",
+                    marginTop: 15
+                  }}
+                >
+                  <Icon name="map-marker" type="FontAwesome" />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 18,
+                      color: "green",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Best Brunch in London
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ marginLeft: "5%", marginTop: 10 }}>
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={this.state.starCount}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
+                    />
                   </View>
-            </View>
-            <Text style={{marginLeft:'5%'}}>Love this map! Fantastic suggestion arround the capital. i'hv tried3 so far really impress by them all, can't wait to try more</Text>
-            
-            <View style={{ marginLeft: "5%", flexDirection: "row",marginTop:15 }}>
-              <Icon name="map-marker" type="FontAwesome" />
-              <Text style={{marginLeft:10,fontSize:18,color:'green',fontWeight:'bold'}}>Best Brunch in London</Text>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginLeft:"5%",marginTop:10}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-                 </View>
-                 <View style={{marginLeft:'auto',marginRight:'5%',marginTop:10}}>
-                    <Text style={{color:'gray'}}>19-Feb-2019</Text>
+                  <View
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "5%",
+                      marginTop: 10
+                    }}
+                  >
+                    <Text style={{ color: "gray" }}>19-Feb-2019</Text>
                   </View>
-            </View>
-            <Text style={{marginLeft:'5%'}}>Love this map! Fantastic suggestion arround the capital. i'hv tried3 so far really impress by them all, can't wait to try more</Text>
-            
-            <View style={{ marginLeft: "5%", flexDirection: "row",marginTop:15 }}>
-              <Icon name="map-marker" type="FontAwesome" />
-              <Text style={{marginLeft:10,fontSize:18,color:'green',fontWeight:'bold'}}>Best Brunch in London</Text>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginLeft:"5%",marginTop:10}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-                 </View>
-                 <View style={{marginLeft:'auto',marginRight:'5%',marginTop:10}}>
-                    <Text style={{color:'gray'}}>19-Feb-2019</Text>
-                  </View>
-            </View>
-            <Text style={{marginLeft:'5%'}}>Love this map! Fantastic suggestion arround the capital. i'hv tried3 so far really impress by them all, can't wait to try more</Text>
-            
+                </View>
+                <Text style={{ marginLeft: "5%" }}>
+                  Love this map! Fantastic suggestion arround the capital. i'hv
+                  tried3 so far really impress by them all, can't wait to try
+                  more
+                </Text>
 
+                <View
+                  style={{
+                    marginLeft: "5%",
+                    flexDirection: "row",
+                    marginTop: 20
+                  }}
+                >
+                  <Icon name="map-marker" type="FontAwesome" />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 18,
+                      color: "green",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Best Brunch in London
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ marginLeft: "5%", marginTop: 10 }}>
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={this.state.starCount}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "5%",
+                      marginTop: 10
+                    }}
+                  >
+                    <Text style={{ color: "gray" }}>19-Feb-2019</Text>
+                  </View>
+                </View>
+                <Text style={{ marginLeft: "5%" }}>
+                  Love this map! Fantastic suggestion arround the capital. i'hv
+                  tried3 so far really impress by them all, can't wait to try
+                  more
+                </Text>
+
+                <View
+                  style={{
+                    marginLeft: "5%",
+                    flexDirection: "row",
+                    marginTop: 20
+                  }}
+                >
+                  <Icon name="map-marker" type="FontAwesome" />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 18,
+                      color: "green",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Best Brunch in London
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ marginLeft: "5%", marginTop: 10 }}>
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={this.state.starCount}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "5%",
+                      marginTop: 10
+                    }}
+                  >
+                    <Text style={{ color: "gray" }}>19-Feb-2019</Text>
+                  </View>
+                </View>
+                <Text style={{ marginLeft: "5%" }}>
+                  Love this map! Fantastic suggestion arround the capital. i'hv
+                  tried3 so far really impress by them all, can't wait to try
+                  more
+                </Text>
+              </View>
+            )}
           </View>
-          }
-        </View>
-        <View>
-          <ListItem>
-            <Left>
-              <Text style={{ fontSize: 16 }}>Reviews Recieved</Text>
-            </Left>
-
-            <Right>
-              <TouchableOpacity  onPress={() => this.setState({ recieved: true })}>
-              {this.state.recieved==true
-                ? <Icon name="down" type="AntDesign" onPress={()=>this.setState({recieved: false})}/>
-                   
-                : <Icon name="right" type="AntDesign" />
-                }
-              </TouchableOpacity>
-            </Right>
-          </ListItem>
-
-          {this.state.recieved==true &&
           <View>
-            <View style={{marginLeft:'auto',marginRight:'auto'}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-            </View>
-            <Text
-              style={{ marginLeft: "auto", marginRight: "auto", fontSize: 15 }}
-            >
-              4.5 out of 5(170 reviews)
-            </Text>
-            <View style={{ marginLeft: "5%", flexDirection: "row",marginTop:15 }}>
-              <Icon name="map-marker" type="FontAwesome" />
-              <Text style={{marginLeft:10,fontSize:18,color:'green',fontWeight:'bold'}}>Best Brunch in London</Text>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginLeft:"5%",marginTop:10}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-                 </View>
-                 <View style={{marginLeft:'auto',marginRight:'5%',marginTop:10}}>
-                    <Text style={{color:'gray'}}>19-Feb-2019</Text>
-                  </View>
-            </View>
-            <Text style={{marginLeft:'5%'}}>Love this map! Fantastic suggestion arround the capital. i'hv tried3 so far really impress by them all, can't wait to try more</Text>
-            
-            <View style={{ marginLeft: "5%", flexDirection: "row",marginTop:15 }}>
-              <Icon name="map-marker" type="FontAwesome" />
-              <Text style={{marginLeft:10,fontSize:18,color:'green',fontWeight:'bold'}}>Best Brunch in London</Text>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginLeft:"5%",marginTop:10}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-                 </View>
-                 <View style={{marginLeft:'auto',marginRight:'5%',marginTop:10}}>
-                    <Text style={{color:'gray'}}>19-Feb-2019</Text>
-                  </View>
-            </View>
-            <Text style={{marginLeft:'5%'}}>Love this map! Fantastic suggestion arround the capital. i'hv tried3 so far really impress by them all, can't wait to try more</Text>
-            
-            <View style={{ marginLeft: "5%", flexDirection: "row",marginTop:15 }}>
-              <Icon name="map-marker" type="FontAwesome" />
-              <Text style={{marginLeft:10,fontSize:18,color:'green',fontWeight:'bold'}}>Best Brunch in London</Text>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginLeft:"5%",marginTop:10}}>
-                 <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor = {'green'}
-                    starSize={20}
-                  />
-                 </View>
-                 <View style={{marginLeft:'auto',marginRight:'5%',marginTop:10}}>
-                    <Text style={{color:'gray'}}>19-Feb-2019</Text>
-                  </View>
-            </View>
-            <Text style={{marginLeft:'5%'}}>Love this map! Fantastic suggestion arround the capital. i'hv tried3 so far really impress by them all, can't wait to try more</Text>
-            
+            <ListItem>
+              <Left>
+                <Text style={{ fontSize: 16 }}>Reviews Recieved</Text>
+              </Left>
 
+              <Right>
+                <TouchableOpacity
+                  onPress={() => this.setState({ recieved: true })}
+                >
+                  {this.state.recieved == true ? (
+                    <Icon
+                      name="down"
+                      type="AntDesign"
+                      onPress={() => this.setState({ recieved: false })}
+                    />
+                  ) : (
+                    <Icon name="right" type="AntDesign" />
+                  )}
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+
+            {this.state.recieved == true && (
+              <View>
+                <View
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    marginTop: 10
+                  }}
+                >
+                  <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={this.state.starCount}
+                    selectedStar={rating => this.onStarRatingPress(rating)}
+                    fullStarColor={"green"}
+                    starSize={20}
+                  />
+                </View>
+                <Text
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    fontSize: 15
+                  }}
+                >
+                  4.5 out of 5(170 reviews)
+                </Text>
+                <View
+                  style={{
+                    marginLeft: "5%",
+                    flexDirection: "row",
+                    marginTop: 15
+                  }}
+                >
+                  <Icon name="map-marker" type="FontAwesome" />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 18,
+                      color: "green",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Best Brunch in London
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ marginLeft: "5%", marginTop: 10 }}>
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={this.state.starCount}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "5%",
+                      marginTop: 10
+                    }}
+                  >
+                    <Text style={{ color: "gray" }}>19-Feb-2019</Text>
+                  </View>
+                </View>
+                <Text style={{ marginLeft: "5%" }}>
+                  Love this map! Fantastic suggestion arround the capital. i'hv
+                  tried3 so far really impress by them all, can't wait to try
+                  more
+                </Text>
+
+                <View
+                  style={{
+                    marginLeft: "5%",
+                    flexDirection: "row",
+                    marginTop: 20
+                  }}
+                >
+                  <Icon name="map-marker" type="FontAwesome" />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 18,
+                      color: "green",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Best Brunch in London
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ marginLeft: "5%", marginTop: 10 }}>
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={this.state.starCount}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "5%",
+                      marginTop: 10
+                    }}
+                  >
+                    <Text style={{ color: "gray" }}>19-Feb-2019</Text>
+                  </View>
+                </View>
+                <Text style={{ marginLeft: "5%" }}>
+                  Love this map! Fantastic suggestion arround the capital. i'hv
+                  tried3 so far really impress by them all, can't wait to try
+                  more
+                </Text>
+
+                <View
+                  style={{
+                    marginLeft: "5%",
+                    flexDirection: "row",
+                    marginTop: 20
+                  }}
+                >
+                  <Icon name="map-marker" type="FontAwesome" />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 18,
+                      color: "green",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Best Brunch in London
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ marginLeft: "5%", marginTop: 10 }}>
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={this.state.starCount}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "5%",
+                      marginTop: 10
+                    }}
+                  >
+                    <Text style={{ color: "gray" }}>19-Feb-2019</Text>
+                  </View>
+                </View>
+                <Text style={{ marginLeft: "5%" }}>
+                  Love this map! Fantastic suggestion arround the capital. i'hv
+                  tried3 so far really impress by them all, can't wait to try
+                  more
+                </Text>
+              </View>
+            )}
           </View>
-          }
-
-        </View>
         </ScrollView>
       </View>
     );

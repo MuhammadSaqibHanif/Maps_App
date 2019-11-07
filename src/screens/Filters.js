@@ -1,62 +1,42 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
-import {
-  Container,
-  Header,
-  Item,
-  Input,
-  Icon,
-  Card,
-  Left,
-  Right
-} from "native-base";
-import { Switch } from "react-native-switch";
-import HeaderITI from "../components/HeaderITI";
-// import { Rating, AirbnbRating } from 'react-native-elements';
-import { Textarea, Button, Picker } from "native-base";
-import ModalDelete from "./ModalDelete";
-import RangeSlider from "react-native-range-slider";
+import { Input, Icon } from "native-base";
+import { Button } from "native-base";
+import MultiSlider from "@ptomasroos/react-native-multi-slider";
+
+class CustomSliderMarkerRight extends Component {
+  render() {
+    return (
+      <Image
+        source={require("../../assets/images/multiply-black.png")}
+        style={{ width: 17, height: 17, alignSelf: "flex-end" }}
+      />
+    );
+  }
+}
 
 class Filters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      map_update: false,
-      price: false,
-      given: false,
-      recieved: false,
-      btn: false,
-      starCount: 3.5,
-      selected: undefined,
-      pick: undefined,
-      Alert_Visibility: false
+      values: [0, 9]
     };
   }
 
-  Show_Custom_Alert(visible) {
-    this.setState({ Alert_Visibility: visible });
-  }
+  // enableScroll = () => this.setState({ scrollEnabled: true });
 
-  ok_Button = () => {
-    Alert.alert("OK Button Clicked.");
+  // disableScroll = () => this.setState({ scrollEnabled: false });
+
+  multiSliderValuesChange = values => {
+    this.setState({
+      values
+    });
   };
 
-  onValueChange(value) {
-    this.setState({
-      selected: value
-    });
-    console.log("SSDSDDS", value);
-  }
-  onValueChange1(value) {
-    this.setState({
-      pick: value
-    });
-    console.log("SSDSDDS", value);
-  }
   render() {
-    const { map_update, price } = this.state;
-    const { rating } = this.props;
-    console.log("map_update >>>", this.props.navigation.state.params);
+    const {} = this.state;
+
+    // console.log("map_update >>>", this.props.navigation.state.params);
 
     return (
       <View>
@@ -69,18 +49,45 @@ class Filters extends Component {
             marginTop: 10
           }}
         >
-          <HeaderITI
-            first_icon_path={{}}
-            first_icon_style={{ width: 21, height: 21 }}
-            first_icon_function={() => true}
-            middle_text="Filter"
-            middle_text_style={{ fontSize: 24, color: "black" }}
-            second_icon_path={require("../../assets/images/multiply-black.png")}
-            second_icon_style={{ width: 18, height: 18 }}
-            second_icon_function={() => this.props.navigation.goBack()}
-          />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center"
+            }}
+          >
+            <TouchableOpacity style={{ width: "20%" }} onPress={() => true}>
+              <Text
+                style={{ fontSize: 16, color: "black", textAlign: "center" }}
+              >
+                Clear All
+              </Text>
+            </TouchableOpacity>
+
+            <Text
+              style={{
+                fontSize: 24,
+                color: "black",
+                width: "60%",
+                textAlign: "center"
+              }}
+            >
+              Filter
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: "20%" }}
+              onPress={() => this.props.navigation.goBack()}
+            >
+              <Image
+                source={require("../../assets/images/multiply-black.png")}
+                style={{ width: 17, height: 17, alignSelf: "flex-end" }}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
         {/* Header */}
+
         <View>
           <ScrollView>
             <View style={{ borderTopWidth: 1, marginBottom: 150 }}>
@@ -92,6 +99,47 @@ class Filters extends Component {
                 >
                   Price
                 </Text>
+
+                <View style={{ alignSelf: "center" }}>
+                  <MultiSlider
+                    values={[this.state.values[0], this.state.values[1]]}
+                    sliderLength={280}
+                    onValuesChange={this.multiSliderValuesChange}
+                    min={0}
+                    max={10}
+                    step={1}
+                    // customMarker={
+                    // return (
+
+                    //   <Image
+                    //   source={require("../../assets/images/multiply-black.png")}
+                    //   style={{ width: 17, height: 17, alignSelf: "flex-end" }}
+                    //   />
+                    //   )
+                    // }
+                    customMarkerLeft={e => {
+                      return (
+                        <View currentValue={e.currentValue}>
+                          <Image
+                            source={require("../../assets/images/multiply-black.png")}
+                            style={{
+                              width: 17,
+                              height: 17
+                              // alignSelf: "flex-end"
+                            }}
+                          />
+                        </View>
+                      );
+                    }}
+                    customMarkerRight={e => {
+                      return (
+                        <CustomSliderMarkerRight
+                          currentValue={e.currentValue}
+                        />
+                      );
+                    }}
+                  />
+                </View>
               </View>
 
               <View

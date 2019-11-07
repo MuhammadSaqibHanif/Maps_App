@@ -41,7 +41,7 @@ import ExistingMap from "../src/screens/ExistingMap";
 import EditMap from "../src/screens/EditMap";
 import ModalDelete from "../src/screens/ModalDelete";
 import Filters from "../src/screens/Filters";
-import FreeMap from "../src/screens/FreeMap";
+import SelectedMap from "../src/screens/SelectedMap";
 import Map from "../src/screens/Map";
 
 const Width = Dimensions.get("window").width;
@@ -76,13 +76,13 @@ const ExploreStack = createStackNavigator(
     reviews,
     firstScreen,
     MyProfile,
-    Reviews,
+    // Reviews,
     Earning,
     ExistingMap,
     EditMap,
     ModalDelete,
     Filters,
-    FreeMap
+    SelectedMap
   },
   {
     headerMode: "none",
@@ -93,13 +93,16 @@ const ExploreStack = createStackNavigator(
 ExploreStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
 
-  // navigation.state.routes.map(route => {
-  //   if (route.routeName === "Updates" || route.routeName === "SinglePost") {
-  //     tabBarVisible = true;
-  //   } else {
-  //     tabBarVisible = false;
-  //   }
-  // });
+  navigation.state.routes.map(route => {
+    if (
+      route.routeName === "SelectedMap"
+      // || route.routeName === "SinglePost"
+    ) {
+      tabBarVisible = false;
+    } else {
+      tabBarVisible = true;
+    }
+  });
 
   return {
     tabBarVisible,
@@ -199,11 +202,14 @@ SavedStack.navigationOptions = ({ navigation }) => {
 const AccountStack = createStackNavigator(
   {
     MyAccount,
+    Reviews,
+    PreferencesSet,
     Notifications,
     InviteFriends,
     Help,
     TermsService,
-    FeedBack
+    FeedBack,
+    Earning
   },
   {
     headerMode: "none"
@@ -212,6 +218,23 @@ const AccountStack = createStackNavigator(
 
 AccountStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
+
+  navigation.state.routes.map(route => {
+    if (
+      route.routeName === "Reviews" ||
+      route.routeName === "Notifications" ||
+      route.routeName === "InviteFriends" ||
+      route.routeName === "Help" ||
+      route.routeName === "Earning" ||
+      route.routeName === "TermsService" ||
+      route.routeName === "FeedBack" ||
+      route.routeName === "PreferencesSet"
+    ) {
+      tabBarVisible = false;
+    } else {
+      tabBarVisible = true;
+    }
+  });
 
   return {
     tabBarVisible,
@@ -240,7 +263,7 @@ const BottomTabs = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: "gray",
+      activeTintColor: "green",
       inactiveTintColor: "black",
       showLabel: true,
       style: {

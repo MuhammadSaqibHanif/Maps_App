@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
-import { Input, Item, Label } from "native-base";
 import HeaderITI from "../components/HeaderITI";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Input } from "react-native-elements";
 
 class EmailRegister3 extends Component {
   constructor(props) {
@@ -77,16 +78,19 @@ class EmailRegister3 extends Component {
           }}
         >
           <View>
-            <View style={{ width: "90%", alignSelf: "center", marginTop: 30 }}>
-              <Item stackedLabel style={{ width: "95%", marginBottom: 15 }}>
-                <Label style={{ color: "#FFFFFF" }}>Your City</Label>
-                <Input
-                  placeholder="Enter your city"
-                  placeholderTextColor="gray"
-                  value={email}
-                  onChangeText={text => this.setState({ email: text })}
-                />
-              </Item>
+            <View style={{ marginTop: 20 }}>
+              <Input
+                label="Your City"
+                labelStyle={{ color: "#FFFFFF" }}
+                placeholder="Enter your city"
+                placeholderTextColor="gray"
+                value={email}
+                inputContainerStyle={{
+                  borderColor: "#FFFFFF"
+                }}
+                rightIcon={<Icon name="user" size={24} color="white" />}
+                onChangeText={text => this.setState({ email: text })}
+              />
             </View>
           </View>
 

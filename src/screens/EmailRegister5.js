@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { Input, Item, Label } from "native-base";
 import HeaderITI from "../components/HeaderITI";
+import { Overlay } from "react-native-elements";
 
 class EmailRegister5 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ""
+      email: "",
+      isVisible: false
     };
   }
 
@@ -21,6 +23,87 @@ class EmailRegister5 extends Component {
           backgroundColor: "#48B693"
         }}
       >
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+          windowBackgroundColor="rgba(0, 0, 0, .5)"
+          overlayBackgroundColor="#FFFFFF"
+          width="80%"
+          height="auto"
+        >
+          <View style={{ alignItems: "center", width: "100%" }}>
+            <View
+              style={{
+                paddingHorizontal: 10,
+                marginTop: 5,
+                width: "100%",
+                alignItems: "center"
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 18,
+                  fontWeight: "bold"
+                }}
+              >
+                "Pointer" Would Like to
+              </Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 18,
+                  fontWeight: "bold"
+                }}
+              >
+                Send You Notification
+              </Text>
+              <Text style={{ textAlign: "center", marginTop: 5 }}>
+                This allows the app and website to
+              </Text>
+              <Text style={{ textAlign: "center" }}>
+                share informationabout you.
+              </Text>
+              <Text style={{ textAlign: "center" }}>
+                share informationabout you.
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 20,
+                borderTopWidth: 1,
+                width: "100%",
+                paddingTop: 5
+              }}
+            >
+              <TouchableOpacity style={{ borderRightWidth: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    color: "blue"
+                  }}
+                >
+                  Don't Allow
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ width: "50%" }}>
+                <Text
+                  style={{
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    color: "blue"
+                  }}
+                >
+                  OK
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Overlay>
+
         {/* Header */}
         <View
           style={{
@@ -134,7 +217,11 @@ class EmailRegister5 extends Component {
               marginLeft: "auto",
               marginRight: "auto"
             }}
-            onPress={() => this.props.navigation.navigate("EmailRegister2")}
+            onPress={() =>
+              this.setState({
+                isVisible: true
+              })
+            }
           >
             <Text
               style={{

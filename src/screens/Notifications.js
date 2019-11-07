@@ -1,24 +1,96 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
-import { Icon } from "native-base";
-import { Switch } from "react-native-switch";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  LayoutAnimation,
+  StyleSheet
+} from "react-native";
+
 import HeaderITI from "../components/HeaderITI";
+
+const styles = StyleSheet.create({
+  container: {
+    width: 70,
+    height: 30,
+    backgroundColor: "grey",
+    flexDirection: "row",
+    overflow: "visible",
+    borderRadius: 15,
+    shadowColor: "black",
+    shadowOpacity: 1.0,
+    shadowOffset: {
+      width: -2,
+      height: 2
+    }
+  },
+  circle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "grey",
+    alignSelf: "center",
+    backgroundColor: "white",
+    shadowColor: "black",
+    shadowOpacity: 1.0,
+    shadowOffset: {
+      width: 2,
+      height: 2
+    }
+  },
+  activeContainer: {
+    backgroundColor: "grey",
+    flexDirection: "row-reverse"
+  },
+  label: {
+    alignSelf: "center",
+    backgroundColor: "transparent",
+    paddingHorizontal: 6,
+    fontWeight: "bold",
+    color: "#FFFFFF"
+  }
+});
 
 class Notifications extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: props.value,
       map_update: false
     };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // update local state.value if props.value changes....
+    if (nextProps.value !== this.state.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+
+  toggle() {
+    // define how we will use LayoutAnimation to give smooth transition between state change
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    const newValue = !this.state.value;
+    this.setState({
+      value: newValue
+    });
+
+    // fire function if exists
+    if (typeof this.props.onValueChange === "function") {
+      this.props.onValueChange(newValue);
+    }
   }
 
   render() {
-    const { map_update } = this.state;
+    const { map_update, value } = this.state;
 
-    console.log("map_update >>>", map_update);
+    // console.log("map_update >>>", map_update);
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         {/* Header */}
         <View
           style={{
@@ -53,32 +125,38 @@ class Notifications extends Component {
                 paddingVertical: 8
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Email Notificatons</Text>
-
-             
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                Email Notificatons
+              </Text>
             </View>
-            <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
-            <Text style={{ marginLeft: 15, width: 250 }}>Occassionally,we'd like to on email aboutnew map that you may be intrested in or new features on the app</Text>
-            <View style={{marginLeft:12}}>
-                <Switch
-                  // marginLeft={"100%"}
-                  value={map_update}
-                  onValueChange={val => {
-                    this.setState({
-                      map_update: !map_update
-                    });
-                  }}
-                  disabled={false}
-                  activeText="On"
-                  inActiveText={"Off"}
-                  backgroundActive={"green"}
-                  backgroundInactive={"gray"}
-                  circleActiveColor={"#30a566"}
-                  circleInActiveColor={"#000000"}
-                  // style={{backgroundColor:"yellow"}}
-                />
+            <View
+              style={{
+                flexDirection: "row",
+                width: "98%",
+                alignSelf: "center"
+              }}
+            >
+              <Text style={{ marginLeft: 15, width: 250 }}>
+                Occassionally,we'd like to on email aboutnew map that you may be
+                intrested in or new features on the app
+              </Text>
+
+              {/* Switch Button */}
+              <TouchableOpacity
+                onPress={this.toggle}
+                style={{
+                  marginRight: 5
+                }}
+              >
+                <View
+                  style={[styles.container, value && styles.activeContainer]}
+                >
+                  <View style={styles.circle} />
+                  <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
                 </View>
-              </View>
+              </TouchableOpacity>
+              {/* Switch Button */}
+            </View>
             <View
               onPress={() => this.props.navigation.navigate("PreferencesSet")}
               style={{
@@ -91,8 +169,9 @@ class Notifications extends Component {
                 paddingVertical: 8
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: 'bold',marginTop:10 }}>Push Notification</Text>
-
+              <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 10 }}>
+                Push Notification
+              </Text>
             </View>
             <View style={{}}>
               <View
@@ -103,38 +182,44 @@ class Notifications extends Component {
                   alignSelf: "center",
                   borderTopColor: "gray",
                   // borderTopWidth: 1,
-                  paddingVertical: 8,
+                  paddingVertical: 8
                   // backgroundColor: 'yellow'
                 }}
               >
-                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Map Updates</Text>
-
-
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  Map Updates
+                </Text>
               </View>
-              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
-                <Text style={{ marginLeft: 15, width: 250, color: 'gray'}}>When a map you have a saved or purchased has been update by the creator</Text>
-                <View style={{marginLeft:12}}>
-                <Switch
-                  // marginLeft={"100%"}
-                  value={map_update}
-                  onValueChange={val => {
-                    this.setState({
-                      map_update: !map_update
-                    });
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: "98%",
+                  alignSelf: "center"
+                }}
+              >
+                <Text style={{ marginLeft: 15, width: 250, color: "gray" }}>
+                  When a map you have a saved or purchased has been update by
+                  the creator
+                </Text>
+
+                {/* Switch Button */}
+                <TouchableOpacity
+                  onPress={this.toggle}
+                  style={{
+                    marginRight: 5
                   }}
-                  disabled={false}
-                  activeText="On"
-                  inActiveText={"Off"}
-                  backgroundActive={"green"}
-                  backgroundInactive={"gray"}
-                  circleActiveColor={"#30a566"}
-                  circleInActiveColor={"#000000"}
-                  // style={{backgroundColor:"yellow"}}
-                />
-                </View>
+                >
+                  <View
+                    style={[styles.container, value && styles.activeContainer]}
+                  >
+                    <View style={styles.circle} />
+                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                  </View>
+                </TouchableOpacity>
+                {/* Switch Button */}
               </View>
             </View>
-            <View style={{marginTop:10}}>
+            <View style={{ marginTop: 10 }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -146,32 +231,41 @@ class Notifications extends Component {
                   paddingVertical: 8
                 }}
               >
-                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Permanent Closures</Text>
-               
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  Permanent Closures
+                </Text>
               </View>
-              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
-              <Text style={{ marginLeft: 15, width: 250, color: 'gray' }}>When a location is in the map you have created become permanently closed so that you can remove it friom your map</Text>
-              <View style={{marginLeft:12}}>
-              <Switch
-                  value={map_update}
-                  onValueChange={val => {
-                    this.setState({
-                      map_update: !map_update
-                    });
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: "98%",
+                  alignSelf: "center"
+                }}
+              >
+                <Text style={{ marginLeft: 15, width: 250, color: "gray" }}>
+                  When a location is in the map you have created become
+                  permanently closed so that you can remove it friom your map
+                </Text>
+
+                {/* Switch Button */}
+                <TouchableOpacity
+                  onPress={this.toggle}
+                  style={{
+                    marginRight: 5
                   }}
-                  disabled={false}
-                  activeText="On"
-                  inActiveText={"Off"}
-                  backgroundActive={"green"}
-                  backgroundInactive={"gray"}
-                  circleActiveColor={"#30a566"}
-                  circleInActiveColor={"#000000"}
-                />
-                </View>
-                </View>
+                >
+                  <View
+                    style={[styles.container, value && styles.activeContainer]}
+                  >
+                    <View style={styles.circle} />
+                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                  </View>
+                </TouchableOpacity>
+                {/* Switch Button */}
+              </View>
             </View>
 
-            <View style={{marginTop:10}}>
+            <View style={{ marginTop: 10 }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -183,32 +277,40 @@ class Notifications extends Component {
                   paddingVertical: 8
                 }}
               >
-                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Purchases/Save</Text>
-                
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  Purchases/Save
+                </Text>
               </View>
-              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
-              <Text style={{ marginLeft: 15, width: 250, color: 'gray' }}>When a map you have created purchased or save by anothert user</Text>
-              <View style={{marginLeft:12}}>
-              <Switch
-                  value={map_update}
-                  onValueChange={val => {
-                    this.setState({
-                      map_update: !map_update
-                    });
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: "98%",
+                  alignSelf: "center"
+                }}
+              >
+                <Text style={{ marginLeft: 15, width: 250, color: "gray" }}>
+                  When a map you have created purchased or save by anothert user
+                </Text>
+
+                {/* Switch Button */}
+                <TouchableOpacity
+                  onPress={this.toggle}
+                  style={{
+                    marginRight: 5
                   }}
-                  disabled={false}
-                  activeText="On"
-                  inActiveText={"Off"}
-                  backgroundActive={"green"}
-                  backgroundInactive={"gray"}
-                  circleActiveColor={"#30a566"}
-                  circleInActiveColor={"#000000"}
-                />
-                </View>
-                </View>
+                >
+                  <View
+                    style={[styles.container, value && styles.activeContainer]}
+                  >
+                    <View style={styles.circle} />
+                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                  </View>
+                </TouchableOpacity>
+                {/* Switch Button */}
+              </View>
             </View>
 
-            <View style={{marginTop:10}}>
+            <View style={{ marginTop: 10 }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -220,96 +322,91 @@ class Notifications extends Component {
                   paddingVertical: 8
                 }}
               >
-                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Reviews</Text>
-                
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  Reviews
+                </Text>
               </View>
-              <View style={{ flexDirection: 'row',width:"98%",alignSelf:'center' }}>
-              <Text style={{ marginLeft: 15, width: 250, color: 'gray' }}>When a map you have created or received a review from another user</Text>
-              <View style={{marginLeft:12}}>
-              <Switch
-                  value={map_update}
-                  onValueChange={val => {
-                    this.setState({
-                      map_update: !map_update
-                    });
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: "98%",
+                  alignSelf: "center",
+                  marginBottom: 40
+                }}
+              >
+                <Text style={{ marginLeft: 15, width: 250, color: "gray" }}>
+                  When a map you have created or received a review from another
+                  user
+                </Text>
+
+                {/* Switch Button */}
+                <TouchableOpacity
+                  onPress={this.toggle}
+                  style={{
+                    marginRight: 5
                   }}
-                  disabled={false}
-                  activeText="On"
-                  inActiveText={"Off"}
-                  backgroundActive={"green"}
-                  backgroundInactive={"gray"}
-                  circleActiveColor={"#30a566"}
-                  circleInActiveColor={"#000000"}
-                  style={{}}
-                />
-                </View>
-                </View>
+                >
+                  <View
+                    style={[styles.container, value && styles.activeContainer]}
+                  >
+                    <View style={styles.circle} />
+                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                  </View>
+                </TouchableOpacity>
+                {/* Switch Button */}
+              </View>
             </View>
-            {/* 
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Help</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Terms of Service</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Give Feedback</Text>
-              <Icon name="home" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "90%",
-                alignSelf: "center",
-                borderTopColor: "gray",
-                borderTopWidth: 1,
-                paddingVertical: 8
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>Log Out</Text>
-              <Icon name="home" />
-            </TouchableOpacity> */}
           </View>
         </ScrollView>
+
+        {/* Footer */}
+        <View
+          style={{
+            // flex: 1,
+            width: "100%",
+            height: 60,
+
+            // width: 50,
+            borderTopColor: "#DCDCDC",
+            borderTopWidth: 1
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: "green",
+              height: 45,
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "85%",
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "auto",
+              marginBottom: "auto"
+            }}
+            onPress={() => this.props.navigation.navigate("ListingScreen")}
+          >
+            <Text
+              style={{
+                color: "black",
+                fontSize: 20
+              }}
+            >
+              Save Changes
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {/* Footer */}
       </View>
     );
   }
 }
+
+// Notifications.propTypes = {
+//   onValueChange: React.PropTypes.func,
+//   value: React.PropTypes.bool
+// };
+
+// Notifications.defaultProps = {};
 
 export default Notifications;

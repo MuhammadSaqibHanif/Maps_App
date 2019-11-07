@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
-import { Input, Item, Label } from "native-base";
 import HeaderITI from "../components/HeaderITI";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Input } from "react-native-elements";
 
 class EmailRegister4 extends Component {
   constructor(props) {
@@ -79,10 +80,40 @@ class EmailRegister4 extends Component {
         >
           <View>
             <View style={{ width: "90%", alignSelf: "center", marginTop: 30 }}>
-              <Item stackedLabel style={{ width: "95%", marginBottom: 15 }}>
+              <View style={{ marginTop: 5 }}>
+                <Input
+                  label="Username"
+                  labelStyle={{ color: "#FFFFFF" }}
+                  placeholder="Enter a unique username"
+                  placeholderTextColor="gray"
+                  value={email}
+                  inputContainerStyle={{
+                    borderColor: "#FFFFFF"
+                  }}
+                  // rightIcon={<Icon name="user" size={24} color="white" />}
+                  onChangeText={text => this.setState({ email: text })}
+                />
+              </View>
+
+              <View style={{ marginTop: 20 }}>
+                <Input
+                  label="Password"
+                  labelStyle={{ color: "#FFFFFF" }}
+                  placeholder="Enter a password"
+                  placeholderTextColor="gray"
+                  value={password}
+                  inputContainerStyle={{
+                    borderColor: "#FFFFFF"
+                  }}
+                  rightIcon={<Icon name="user" size={24} color="white" />}
+                  onChangeText={text => this.setState({ password: text })}
+                />
+              </View>
+
+              {/* <Item stackedLabel style={{ width: "95%", marginBottom: 15 }}>
                 <Label style={{ color: "#FFFFFF" }}>Username</Label>
                 <Input
-                  placeholder="Enter a unique username"
+                  placeholder="Enter a password"
                   placeholderTextColor="gray"
                   value={email}
                   onChangeText={text => this.setState({ email: text })}
@@ -98,7 +129,7 @@ class EmailRegister4 extends Component {
                   value={password}
                   onChangeText={text => this.setState({ password: text })}
                 />
-              </Item>
+              </Item> */}
               <View>
                 <Text
                   style={{

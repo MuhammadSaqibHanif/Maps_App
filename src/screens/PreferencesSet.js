@@ -29,7 +29,8 @@ class PreferencesSet extends Component {
         />
         <Text
           style={{
-            fontSize: 14,
+            fontSize: 12,
+            textAlignVertical: "center",
             textAlign: "center",
             color: this.state[text] ? "green" : "black",
             fontWeight: this.state[text] ? "bold" : "normal"
@@ -115,24 +116,25 @@ class PreferencesSet extends Component {
                     paddingBottom: 10
                   }}
                 >
-                  {this._renderItems("home", "FontAwesome", 45, "abcde qwerty")}
+                  {this._renderItems("home", "FontAwesome", 45, "Diary Free")}
 
-                  {this._renderItems("home", "FontAwesome", 45, "abcdef werty")}
+                  {this._renderItems("home", "FontAwesome", 45, "Egg Free")}
 
-                  {this._renderItems("home", "FontAwesome", 45, "abcdef qerty")}
+                  {this._renderItems("home", "FontAwesome", 45, "Gluten Free")}
 
-                  {this._renderItems("home", "FontAwesome", 45, "abcdef qwety")}
+                  {this._renderItems("home", "FontAwesome", 45, "High Protein")}
 
-                  {this._renderItems(
-                    "home",
-                    "FontAwesome",
-                    45,
-                    "abcdef qwerty"
-                  )}
+                  {this._renderItems("home", "FontAwesome", 45, "Keto")}
 
-                  {this._renderItems("home", "FontAwesome", 45, "abcdef qwery")}
+                  {this._renderItems("home", "FontAwesome", 45, "Nut Free")}
 
-                  {this._renderItems("home", "FontAwesome", 45, "abcdef qwert")}
+                  {this._renderItems("home", "FontAwesome", 45, "Paleo")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "Pescatarian")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "Raw")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "Vega")}
                 </View>
               </ScrollView>
 
@@ -147,7 +149,7 @@ class PreferencesSet extends Component {
                       marginTop: 10
                     }}
                   >
-                    Diet
+                    Cuisines
                   </Text>
                 </View>
                 <ScrollView
@@ -167,50 +169,18 @@ class PreferencesSet extends Component {
                       "home",
                       "FontAwesome",
                       45,
-                      "abcde qwerty"
+                      "Afternoon Tea"
                     )}
 
-                    {this._renderItems(
-                      "home",
-                      "FontAwesome",
-                      45,
-                      "abcdef werty"
-                    )}
+                    {this._renderItems("home", "FontAwesome", 45, "American")}
 
-                    {this._renderItems(
-                      "home",
-                      "FontAwesome",
-                      45,
-                      "abcdef qerty"
-                    )}
+                    {this._renderItems("home", "FontAwesome", 45, "Barbeque")}
 
-                    {this._renderItems(
-                      "home",
-                      "FontAwesome",
-                      45,
-                      "abcdef qwety"
-                    )}
+                    {this._renderItems("home", "FontAwesome", 45, "British")}
 
-                    {this._renderItems(
-                      "home",
-                      "FontAwesome",
-                      45,
-                      "abcdef qwerty"
-                    )}
+                    {this._renderItems("home", "FontAwesome", 45, "Brunch")}
 
-                    {this._renderItems(
-                      "home",
-                      "FontAwesome",
-                      45,
-                      "abcdef qwery"
-                    )}
-
-                    {this._renderItems(
-                      "home",
-                      "FontAwesome",
-                      45,
-                      "abcdef qwert"
-                    )}
+                    {this._renderItems("home", "FontAwesome", 45, "Caribb")}
                   </View>
                 </ScrollView>
               </View>
@@ -226,7 +196,7 @@ class PreferencesSet extends Component {
                       marginTop: 10
                     }}
                   >
-                    Diet
+                    Drinks
                   </Text>
                 </View>
                 <ScrollView
@@ -305,7 +275,7 @@ class PreferencesSet extends Component {
                       marginTop: 10
                     }}
                   >
-                    Diet
+                    Budget
                   </Text>
                 </View>
                 <ScrollView
@@ -384,7 +354,165 @@ class PreferencesSet extends Component {
                       marginTop: 10
                     }}
                   >
-                    Diet
+                    Sports
+                  </Text>
+                </View>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      paddingLeft: 5,
+                      borderBottomColor: "#DCDCDC",
+                      borderBottomWidth: 3,
+                      paddingBottom: 10
+                    }}
+                  >
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcde qwerty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef werty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qerty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwety"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwerty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwery"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwert"
+                    )}
+                  </View>
+                </ScrollView>
+              </View>
+
+              {/* 6 */}
+              <View>
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 22,
+                      textAlign: "left",
+                      marginLeft: 10,
+                      marginTop: 10
+                    }}
+                  >
+                    Travel
+                  </Text>
+                </View>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      paddingLeft: 5,
+                      borderBottomColor: "#DCDCDC",
+                      borderBottomWidth: 3,
+                      paddingBottom: 10
+                    }}
+                  >
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcde qwerty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef werty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qerty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwety"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwerty"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwery"
+                    )}
+
+                    {this._renderItems(
+                      "home",
+                      "FontAwesome",
+                      45,
+                      "abcdef qwert"
+                    )}
+                  </View>
+                </ScrollView>
+              </View>
+
+              {/* 7 */}
+              <View>
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 22,
+                      textAlign: "left",
+                      marginLeft: 10,
+                      marginTop: 10
+                    }}
+                  >
+                    Interests
                   </Text>
                 </View>
                 <ScrollView
@@ -452,6 +580,55 @@ class PreferencesSet extends Component {
                 </ScrollView>
               </View>
             </View>
+
+            {/* 8 */}
+            <View>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 22,
+                    textAlign: "left",
+                    marginLeft: 10,
+                    marginTop: 10
+                  }}
+                >
+                  Daily Life
+                </Text>
+              </View>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    paddingLeft: 5,
+                    borderBottomColor: "#DCDCDC",
+                    borderBottomWidth: 3,
+                    paddingBottom: 10
+                  }}
+                >
+                  {this._renderItems("home", "FontAwesome", 45, "abcde qwerty")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "abcdef werty")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "abcdef qerty")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "abcdef qwety")}
+
+                  {this._renderItems(
+                    "home",
+                    "FontAwesome",
+                    45,
+                    "abcdef qwerty"
+                  )}
+
+                  {this._renderItems("home", "FontAwesome", 45, "abcdef qwery")}
+
+                  {this._renderItems("home", "FontAwesome", 45, "abcdef qwert")}
+                </View>
+              </ScrollView>
+            </View>
           </ScrollView>
         </View>
         {/* Body */}
@@ -466,7 +643,7 @@ class PreferencesSet extends Component {
         >
           <TouchableOpacity
             style={{
-              backgroundColor: "#C0C0C0",
+              backgroundColor: "green",
               height: "80%",
               flexDirection: "row",
               justifyContent: "center",
@@ -481,7 +658,7 @@ class PreferencesSet extends Component {
           >
             <Text
               style={{
-                color: "#48B693",
+                color: "black",
                 fontSize: 20
               }}
             >

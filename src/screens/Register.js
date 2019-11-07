@@ -6,14 +6,108 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+import { Overlay } from "react-native-elements";
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false,
+      popUp_content: ""
+    };
+  }
+
+  _showPopup = content => {
+    this.setState({
+      isVisible: true,
+      popUp_content: content
+    });
+  };
+
   render() {
     return (
       <ImageBackground
         source={require("../../assets/images/splash.jpg")}
         style={{ width: "100%", height: "100%" }}
       >
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+          windowBackgroundColor="rgba(0, 0, 0, .5)"
+          overlayBackgroundColor="#FFFFFF"
+          width="80%"
+          height="auto"
+        >
+          <View style={{ alignItems: "center", width: "100%" }}>
+            <View
+              style={{
+                paddingHorizontal: 10,
+                marginTop: 5,
+                width: "100%",
+                alignItems: "center"
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 18,
+                  fontWeight: "bold"
+                }}
+              >
+                "Pointer" Wants to Use
+              </Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 18,
+                  fontWeight: "bold"
+                }}
+              >
+                {`"${this.state.popUp_content}" to Sign In`}
+              </Text>
+              <Text style={{ textAlign: "center", marginTop: 5 }}>
+                This allows the app and website to
+              </Text>
+              <Text style={{ textAlign: "center" }}>
+                share informationabout you.
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 20,
+                borderTopWidth: 1,
+                width: "100%",
+                paddingTop: 5
+              }}
+            >
+              <TouchableOpacity style={{ borderRightWidth: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    color: "blue"
+                  }}
+                >
+                  Cancel
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ width: "50%" }}>
+                <Text
+                  style={{
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    color: "blue"
+                  }}
+                >
+                  Continue
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Overlay>
+
         <View
           style={{
             flex: 1.5,
@@ -39,8 +133,10 @@ class Register extends Component {
           }}
         >
           <TouchableOpacity
+            onPress={() => this._showPopup("facebook.com")}
             style={{
               backgroundColor: "#3b5998",
+              borderRadius: 5,
               height: "14%",
               marginBottom: "5%",
               flexDirection: "row",
@@ -64,9 +160,10 @@ class Register extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("PreferencesSet")}
+            onPress={() => this._showPopup("google.com")}
             style={{
               backgroundColor: "#CC3333",
+              borderRadius: 5,
               height: "14%",
               marginBottom: "5%",
               flexDirection: "row",
@@ -93,6 +190,7 @@ class Register extends Component {
             onPress={() => this.props.navigation.navigate("EmailRegister")}
             style={{
               backgroundColor: "#008000",
+              borderRadius: 5,
               height: "14%",
               marginBottom: "5%",
               flexDirection: "row",
@@ -113,6 +211,7 @@ class Register extends Component {
           <TouchableOpacity
             style={{
               backgroundColor: "#008000",
+              borderRadius: 5,
               height: "14%",
               marginBottom: "5%",
               flexDirection: "row",

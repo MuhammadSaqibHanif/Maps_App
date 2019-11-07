@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
 import { Icon } from "native-base";
+import { Overlay } from "react-native-elements";
 
 class MyAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isVisible: false
     };
   }
 
@@ -20,6 +22,66 @@ class MyAccount extends Component {
       //   flex: 1
       // }}
       >
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+          windowBackgroundColor="rgba(0, 0, 0, .5)"
+          overlayBackgroundColor="#FFFFFF"
+          width="80%"
+          height="auto"
+        >
+          <View style={{ alignItems: "center", width: "100%" }}>
+            <View
+              style={{
+                paddingHorizontal: 10,
+                marginTop: 5,
+                width: "100%",
+                alignItems: "center"
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  marginBottom: 10
+                }}
+              >
+                Log Out
+              </Text>
+              <Text style={{ textAlign: "center", marginTop: 5 }}>
+                Are you sure you want to
+              </Text>
+              <Text style={{ textAlign: "center" }}>log out?</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 20,
+                borderTopWidth: 1,
+                width: "100%",
+                paddingTop: 5
+              }}
+            >
+              <TouchableOpacity style={{ borderRightWidth: 1, width: "50%" }}>
+                <Text
+                  style={{ textAlignVertical: "center", textAlign: "center" }}
+                >
+                  No, Cancel
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ width: "50%" }}>
+                <Text
+                  style={{ textAlignVertical: "center", textAlign: "center" }}
+                >
+                  Yes, Please
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Overlay>
+
         <View style={{ marginTop: 10 }}>
           <Text
             style={{ fontWeight: "bold", fontSize: 20, textAlign: "center" }}
@@ -71,7 +133,7 @@ class MyAccount extends Component {
 
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity
-           onPress={() => this.props.navigation.navigate("Saved")}
+            onPress={() => this.props.navigation.navigate("Saved")}
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -112,7 +174,7 @@ class MyAccount extends Component {
               borderTopWidth: 1,
               paddingVertical: 8
             }}
-            onPress={()=>this.props.navigation.navigate("Reviews")}
+            onPress={() => this.props.navigation.navigate("Reviews")}
           >
             <Text style={{ fontSize: 16 }}>Reviews</Text>
             <Icon name="home" />
@@ -151,7 +213,7 @@ class MyAccount extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-           onPress={() => this.props.navigation.navigate("Earning")}
+            onPress={() => this.props.navigation.navigate("Earning")}
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -215,6 +277,11 @@ class MyAccount extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() =>
+              this.setState({
+                isVisible: true
+              })
+            }
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
