@@ -43,6 +43,7 @@ import ModalDelete from "../src/screens/ModalDelete";
 import Filters from "../src/screens/Filters";
 import SelectedMap from "../src/screens/SelectedMap";
 import Map from "../src/screens/Map";
+import EmailRegister2Error from "../src/screens/EmailRegister2Error";
 
 const Width = Dimensions.get("window").width;
 
@@ -54,6 +55,7 @@ const AuthStack = createStackNavigator(
     Login,
     EmailRegister,
     EmailRegister2,
+    EmailRegister2Error,
     EmailRegister3,
     EmailRegister4,
     EmailRegister5
@@ -128,6 +130,17 @@ const CreateStack = createStackNavigator(
 
 CreateStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
+
+  navigation.state.routes.map(route => {
+    if (
+      route.routeName === "CreatNewMap"
+      // || route.routeName === "SinglePost"
+    ) {
+      tabBarVisible = false;
+    } else {
+      tabBarVisible = true;
+    }
+  });
 
   return {
     tabBarVisible,

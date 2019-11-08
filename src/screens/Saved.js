@@ -16,9 +16,8 @@ import {
   Button,
   Card
 } from "native-base";
-import { Switch } from "react-native-switch";
+import { Overlay } from "react-native-elements";
 import HeaderITI from "../components/HeaderITI";
-// import { Rating, AirbnbRating } from 'react-native-elements';
 import StarRating from "react-native-star-rating";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
@@ -39,7 +38,8 @@ class Saved extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   map_update: false
+      isVisible: false,
+      popUp_content: "",
       given: false,
       recieved: false,
       starCount: 3.5,
@@ -47,20 +47,12 @@ class Saved extends Component {
     };
   }
 
-  // onRegionChange(region) {
-  //   this.setState({ region });
-  // }
-
-  // getInitialState() {
-  //   return {
-  //     region: {
-  //       latitude: 37.78825,
-  //       longitude: -122.4324,
-  //       latitudeDelta: 0.0922,
-  //       longitudeDelta: 0.0421,
-  //     },
-  //   };
-  // }
+  _showPopup = content => {
+    this.setState({
+      isVisible: true,
+      popUp_content: content
+    });
+  };
 
   onStarRatingPress(rating) {
     this.setState({
@@ -75,6 +67,81 @@ class Saved extends Component {
 
     return (
       <View>
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+          windowBackgroundColor="rgba(0, 0, 0, .5)"
+          overlayBackgroundColor="#FFFFFF"
+          width="80%"
+          height="auto"
+        >
+          <View style={{ alignItems: "center", width: "100%" }}>
+            <View
+              style={{
+                paddingHorizontal: 10,
+                marginTop: 5,
+                width: "100%",
+                alignItems: "center"
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 18,
+                  fontWeight: "bold"
+                }}
+              >
+                Delete
+                <Text style={{ color: "gray" }}>
+                  {` '${this.state.popUp_content}'`}
+                </Text>
+                ?
+              </Text>
+              <Text style={{ textAlign: "center", marginTop: 5 }}>
+                This allows the app and website to share informationabout you.
+              </Text>
+              <Text style={{ textAlign: "center", marginTop: 5 }}>
+                This allows the app and website to share informationabout you.
+                This allows the app and website to share informationabout you.
+                This allows the app and website to share informationabout you.
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 10,
+                borderTopWidth: 1,
+                width: "100%",
+                paddingTop: 5
+              }}
+            >
+              <TouchableOpacity style={{ borderRightWidth: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    color: "blue"
+                  }}
+                >
+                  No, Cancel
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ width: "50%" }}>
+                <Text
+                  style={{
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    color: "blue"
+                  }}
+                >
+                  Yes, Delete
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Overlay>
+
         {/* Header */}
         <View
           style={{
@@ -219,10 +286,7 @@ class Saved extends Component {
                           width: 50
                         }}
                         onPress={() =>
-                          this.props.navigation.navigate("EditMap", {
-                            title: "Best Picnic Spot",
-                            text: "abc"
-                          })
+                          this._showPopup("Gluten Free Lunch Spots")
                         }
                       >
                         <Text
@@ -347,10 +411,7 @@ class Saved extends Component {
                           width: 50
                         }}
                         onPress={() =>
-                          this.props.navigation.navigate("EditMap", {
-                            title: "Best Picnic Spot",
-                            text: "abc"
-                          })
+                          this._showPopup("Gluten Free Lunch Spots")
                         }
                       >
                         <Text
@@ -452,6 +513,9 @@ class Saved extends Component {
                         </Text>
                       </Button>
                       <Button
+                        onPress={() =>
+                          this._showPopup("Gluten Free Lunch Spots")
+                        }
                         style={{
                           backgroundColor: "lightgray",
                           height: 30,
@@ -559,6 +623,9 @@ class Saved extends Component {
                         </Text>
                       </Button>
                       <Button
+                        onPress={() =>
+                          this._showPopup("Gluten Free Lunch Spots")
+                        }
                         style={{
                           backgroundColor: "lightgray",
                           height: 30,
@@ -698,6 +765,7 @@ class Saved extends Component {
                       </Text>
                     </Button>
                     <Button
+                      onPress={() => this._showPopup("Gluten Free Lunch Spots")}
                       style={{
                         backgroundColor: "lightgray",
                         height: 30,
@@ -805,6 +873,7 @@ class Saved extends Component {
                       </Text>
                     </Button>
                     <Button
+                      onPress={() => this._showPopup("Gluten Free Lunch Spots")}
                       style={{
                         backgroundColor: "lightgray",
                         height: 30,
@@ -912,6 +981,7 @@ class Saved extends Component {
                       </Text>
                     </Button>
                     <Button
+                      onPress={() => this._showPopup("Gluten Free Lunch Spots")}
                       style={{
                         backgroundColor: "lightgray",
                         height: 30,

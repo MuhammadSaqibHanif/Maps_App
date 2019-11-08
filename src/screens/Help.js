@@ -95,7 +95,7 @@ class Help extends Component {
             </ListItem>
             {this.state.given == true && (
               <List>
-                <ListItem style={{ marginLeft: 40 }}>
+                <ListItem style={{ marginLeft: 40, height: 35 }}>
                   <Left>
                     <Text style={{ fontSize: 16 }}>Creating an Account</Text>
                   </Left>
@@ -108,10 +108,15 @@ class Help extends Component {
                         <Icon
                           name="down"
                           type="AntDesign"
+                          style={{ fontSize: 18 }}
                           onPress={() => this.setState({ recieved: false })}
                         />
                       ) : (
-                        <Icon name="right" type="AntDesign" />
+                        <Icon
+                          style={{ fontSize: 18 }}
+                          name="right"
+                          type="AntDesign"
+                        />
                       )}
                     </TouchableOpacity>
                   </Right>

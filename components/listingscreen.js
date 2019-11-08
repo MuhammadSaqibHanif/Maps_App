@@ -14,7 +14,8 @@ import {
   Alert
 } from "react-native";
 import { Item, Input as NBInput, Icon as NBIcon } from "native-base";
-import { Icon, Input, Rating } from "react-native-elements";
+import { Icon, Input } from "react-native-elements";
+import StarRating from "react-native-star-rating";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -31,6 +32,12 @@ class Listings extends React.Component {
       Alert_Visibility: false,
       location: false
     };
+  }
+
+  onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating
+    });
   }
 
   Show_Custom_Alert(visible) {
@@ -312,23 +319,7 @@ class Listings extends React.Component {
         </Text>
 
         <FlatList
-          data={[
-            "efwew",
-            "ewfw",
-            "ewfewfwe",
-            "efwew",
-            "ewfw",
-            "ewfewfwe",
-            "efwew",
-            "ewfw",
-            "ewfewfwe",
-            "efwew",
-            "ewfw",
-            "ewfewfwe",
-            "efwew",
-            "ewfw",
-            "ewfewfwe"
-          ]}
+          data={["efwew", "ewfw", "ewfewfwe", "efwew", "ewfw"]}
           renderItem={({ title }) => {
             return (
               <View
@@ -375,19 +366,15 @@ class Listings extends React.Component {
                   </TouchableOpacity>
 
                   <View style={{ flexDirection: "row" }}>
-                    <Rating
-                      type="star"
-                      ratingCount={5}
-                      imageSize={15}
-                      ratingColor="black"
-                      ratingBackgroundColor="#f6e9e0"
-                      style={{
-                        alignSelf: "flex-start",
-                        marginTop: 5,
-                        marginLeft: 5
-                      }}
-                      onFinishRating={this.ratingCompleted}
+                    <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={3}
+                      selectedStar={rating => this.onStarRatingPress(rating)}
+                      fullStarColor={"green"}
+                      starSize={20}
                     />
+
                     <Text style={{ fontSize: 18, marginLeft: 10 }}>
                       17 reviewss
                     </Text>
@@ -473,6 +460,12 @@ class Listings extends React.Component {
             );
           }}
         />
+
+        <View style={{ marginTop: 30, marginBottom: 30, alignSelf: "center" }}>
+          <Text style={{ textAlign: "center" }}>
+            wercf sdfhdv sd fnfs vnsd f
+          </Text>
+        </View>
       </View>
     );
   }

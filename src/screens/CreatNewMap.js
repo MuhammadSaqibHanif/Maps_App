@@ -36,7 +36,8 @@ class CreatNewMap extends Component {
   render() {
     const { map_update, price } = this.state;
     const { rating } = this.props;
-    console.log("map_update >>>", map_update);
+
+    console.log("this.props.navigation >>>", this.props.navigation);
 
     return (
       <View>

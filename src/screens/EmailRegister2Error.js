@@ -4,7 +4,7 @@ import { Input, Item, Label } from "native-base";
 import { CheckBox } from "react-native-elements";
 import HeaderITI from "../components/HeaderITI";
 
-class EmailRegister2 extends Component {
+class EmailRegister2Error extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,6 +89,10 @@ class EmailRegister2 extends Component {
                   onChangeText={text => this.setState({ email: text })}
                 />
               </Item>
+              <Text style={{ color: "red", marginTop: 5, marginLeft: 10 }}>
+                Enter your email address. Enter your email address. Enter your
+                email address
+              </Text>
 
               <View style={{ flexDirection: "row", width: "95%" }}>
                 <CheckBox
@@ -123,36 +127,61 @@ class EmailRegister2 extends Component {
             </View>
           </View>
 
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#C0C0C0",
-              height: 50,
-              marginTop: 30,
-              flexDirection: "row",
-              justifyContent: "center",
-              marginBottom: 20,
-              alignItems: "center",
-              width: "85%",
-              marginLeft: "auto",
-              marginRight: "auto"
-            }}
-            onPress={() =>
-              this.props.navigation.navigate("EmailRegister2Error")
-            }
-          >
-            <Text
+          <View>
+            <TouchableOpacity
               style={{
-                color: "#48B693",
-                fontSize: 20
+                backgroundColor: "#C0C0C0",
+                height: 50,
+                marginTop: 30,
+                flexDirection: "row",
+                justifyContent: "center",
+                // marginBottom: 20,
+                alignItems: "center",
+                width: "85%",
+                marginLeft: "auto",
+                marginRight: "auto"
               }}
+              onPress={() => this.props.navigation.navigate("EmailRegister3")}
             >
-              Add Your Email
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: "#48B693",
+                  fontSize: 20
+                }}
+              >
+                Add Your Email
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#C0C0C0",
+                height: 50,
+                marginTop: 10,
+                flexDirection: "row",
+                justifyContent: "center",
+                marginBottom: 20,
+                alignItems: "center",
+                width: "85%",
+                marginLeft: "auto",
+                marginRight: "auto"
+              }}
+              onPress={() => this.props.navigation.navigate("EmailRegister3")}
+            >
+              <Text
+                style={{
+                  color: "#48B693",
+                  fontSize: 20
+                }}
+              >
+                Add Your Email
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
   }
 }
 
-export default EmailRegister2;
+export default EmailRegister2Error;
