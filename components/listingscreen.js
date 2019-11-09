@@ -1,10 +1,7 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
-/* eslint-disable*/
 import React from "react";
 import {
   Text,
   View,
-  FlatList,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -16,11 +13,11 @@ import {
 import { Item, Input as NBInput, Icon as NBIcon } from "native-base";
 import { Icon, Input } from "react-native-elements";
 import StarRating from "react-native-star-rating";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 class Listings extends React.Component {
   constructor(props) {
@@ -30,7 +27,8 @@ class Listings extends React.Component {
       upCircle: true,
       downcircle: false,
       Alert_Visibility: false,
-      location: false
+      location: false,
+      data: [{ 1: "a" }, { 2: "b" }, { 3: "c" }, { 4: "d" }]
     };
   }
 
@@ -54,6 +52,7 @@ class Listings extends React.Component {
       downcircle: !this.state.downcircle
     });
   };
+
   render() {
     return (
       <View style={styles.container}>
@@ -65,18 +64,9 @@ class Listings extends React.Component {
             alignItems: "center",
             flexDirection: "row",
             padding: 10,
-            justifyContent: "space-between"
+            justifyContent: "center"
           }}
         >
-          <TouchableOpacity
-            onPress={e => this.props.navigation.toggleDrawer(e)}
-          >
-            <NBIcon
-              name="ios-menu"
-              type="Ionicons"
-              style={{ color: "white" }}
-            />
-          </TouchableOpacity>
           <Item
             style={{
               backgroundColor: "white",
@@ -85,7 +75,7 @@ class Listings extends React.Component {
               paddingHorizontal: 5
             }}
           >
-            <NBIcon type="AntDesign" name="search1" style={{ fontSize: 20 }} />
+            <NBIcon type="AntDesign" name="search1" style={{ fontSize: 16 }} />
             <NBInput placeholder="Try searching for Brunch" />
           </Item>
         </View>
@@ -97,10 +87,6 @@ class Listings extends React.Component {
             flexDirection: "row",
             justifyContent: "space-around",
             marginTop: 5
-            // marginLeft:'5%',
-            // backgroundColor:"red",
-            // width:'90%',
-            // borderWidth:1
           }}
         >
           {this.state.location == true ? (
@@ -158,8 +144,10 @@ class Listings extends React.Component {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "space-around",
-                marginTop: 5
+                justifyContent: "space-between",
+                width: "90%",
+                alignSelf: "center",
+                marginBottom: 5
               }}
             >
               <TouchableOpacity
@@ -170,7 +158,8 @@ class Listings extends React.Component {
                   flexDirection: "row",
                   width: wp("40%"),
                   borderRadius: 8,
-                  height: hp("7%")
+                  height: 35,
+                  marginRight: 5
                 }}
                 onPress={() => this.setState({ location: true })}
               >
@@ -178,36 +167,45 @@ class Listings extends React.Component {
                   name="target-two"
                   type="foundation"
                   color="black"
-                  size={30}
+                  size={20}
                 />
-                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                <Text
+                  style={{ fontSize: 13, fontWeight: "bold", marginLeft: 3 }}
+                >
                   Current Locations
                 </Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={{
                   backgroundColor: "#f6e9e0",
                   alignItems: "center",
                   justifyContent: "center",
                   flexDirection: "row",
-                  width: wp("25%"),
+                  width: wp("20%"),
                   borderRadius: 8,
-                  height: hp("7%")
+                  marginRight: 5,
+                  height: 35
                 }}
                 onPress={() => this.props.navigation.navigate("Filters")}
               >
-                <Icon name="filter" type="foundation" color="black" size={30} />
-                <Text style={{ fontSize: 16, fontWeight: "bold" }}>Filter</Text>
+                <Icon name="filter" type="foundation" color="black" size={20} />
+                <Text
+                  style={{ fontSize: 13, fontWeight: "bold", marginLeft: 3 }}
+                >
+                  Filter
+                </Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={{
                   backgroundColor: "#f6e9e0",
                   alignItems: "center",
                   justifyContent: "center",
                   flexDirection: "row",
-                  width: wp("25%"),
+                  width: wp("20%"),
                   borderRadius: 8,
-                  height: hp("7%")
+                  height: 35
                 }}
                 onPress={() => {
                   this.Show_Custom_Alert(true);
@@ -217,9 +215,13 @@ class Listings extends React.Component {
                   name="sort"
                   type="font-awesome-5"
                   color="black"
-                  size={30}
+                  size={20}
                 />
-                <Text style={{ fontSize: 16, fontWeight: "bold" }}>Sort</Text>
+                <Text
+                  style={{ fontSize: 13, fontWeight: "bold", marginLeft: 3 }}
+                >
+                  Sort
+                </Text>
               </TouchableOpacity>
               {this.state.Alert_Visibility && (
                 <Modal
@@ -307,25 +309,28 @@ class Listings extends React.Component {
             </View>
           )}
         </View>
-        <Text
-          style={{
-            fontSize: 30,
-            fontWeight: "bold",
-            marginLeft: 5,
-            marginTop: 10
-          }}
-        >
-          Recommends For Your
-        </Text>
 
-        <FlatList
-          data={["efwew", "ewfw", "ewfewfwe", "efwew", "ewfw"]}
-          renderItem={({ title }) => {
+        {/* Body */}
+        <ScrollView>
+          <Text
+            style={{
+              fontSize: 22,
+              fontWeight: "bold",
+              marginLeft: 5,
+              marginTop: 10
+            }}
+          >
+            Recommended for you...
+          </Text>
+
+          {this.state.data.map((value, index) => {
             return (
               <View
+                key={index}
                 style={{
                   flexDirection: "row",
-                  marginTop: 10,
+                  backgroundColor: index == 1 ? "#f6e9e0" : "transparent",
+                  marginTop: 15,
                   borderBottomColor: "lightgray",
                   paddingBottom: 10,
                   borderBottomWidth: 1
@@ -334,9 +339,23 @@ class Listings extends React.Component {
                 <View style={{ width: wp("60%") }}>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate("SelectedMap")
+                      index == 2
+                        ? this.props.navigation.navigate("PaidMap")
+                        : this.props.navigation.navigate("SelectedMap")
                     }
                   >
+                    {index == 1 && (
+                      <Text
+                        style={{
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          marginLeft: 5,
+                          marginTop: 5
+                        }}
+                      >
+                        Sponsored
+                      </Text>
+                    )}
                     <Text
                       style={{
                         fontSize: 25,
@@ -410,12 +429,6 @@ class Listings extends React.Component {
                 <View
                 // style={{ width: wp("40%") }}
                 >
-                  {/* <Image
-                    source={{
-                      uri: "https://staticmapmaker.com/img/google@2x.png"
-                    }}
-                    style={{ width: 140, height: 225 }}
-                  /> */}
                   <View style={styles.containerm}>
                     <MapView
                       provider={PROVIDER_GOOGLE}
@@ -458,14 +471,48 @@ class Listings extends React.Component {
                 </View>
               </View>
             );
-          }}
-        />
+          })}
 
-        <View style={{ marginTop: 30, marginBottom: 30, alignSelf: "center" }}>
-          <Text style={{ textAlign: "center" }}>
-            wercf sdfhdv sd fnfs vnsd f
-          </Text>
-        </View>
+          <View
+            style={{
+              marginTop: 30,
+              marginBottom: 30,
+              alignSelf: "center",
+              width: "90%",
+              alignItems: "center"
+            }}
+          >
+            <Text style={{ textAlign: "center", width: "80%" }}>
+              you are viewed all the maps within 10km of your current location.
+            </Text>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  textAlign: "center",
+                  marginTop: 15,
+                  marginBottom: 5,
+                  color: "blue",
+                  textDecorationLine: "underline"
+                }}
+              >
+                Expnad your search
+              </Text>
+            </TouchableOpacity>
+            <Text style={{ textAlign: "center" }}>or</Text>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "blue",
+                  textDecorationLine: "underline"
+                }}
+              >
+                create your own map
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+        {/* Body */}
       </View>
     );
   }

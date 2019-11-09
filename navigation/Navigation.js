@@ -5,7 +5,7 @@ import { Icon } from "react-native-elements";
 import {
   createAppContainer,
   createStackNavigator,
-  createDrawerNavigator,
+  // createDrawerNavigator,
   createBottomTabNavigator,
   createSwitchNavigator
 } from "react-navigation";
@@ -44,6 +44,11 @@ import Filters from "../src/screens/Filters";
 import SelectedMap from "../src/screens/SelectedMap";
 import Map from "../src/screens/Map";
 import EmailRegister2Error from "../src/screens/EmailRegister2Error";
+import ShareMap from "../src/screens/ShareMap";
+import SelectedOfflineMap from "../src/screens/SelectedOfflineMap";
+import PointerSelected from "../src/screens/PointerSelected";
+import ImageShow from "../src/screens/ImageShow";
+import PaidMap from "../src/screens/PaidMap";
 
 const Width = Dimensions.get("window").width;
 
@@ -84,7 +89,12 @@ const ExploreStack = createStackNavigator(
     EditMap,
     ModalDelete,
     Filters,
-    SelectedMap
+    SelectedMap,
+    ShareMap,
+    SelectedOfflineMap,
+    PointerSelected,
+    ImageShow,
+    PaidMap
   },
   {
     headerMode: "none",
@@ -97,8 +107,12 @@ ExploreStack.navigationOptions = ({ navigation }) => {
 
   navigation.state.routes.map(route => {
     if (
-      route.routeName === "SelectedMap"
-      // || route.routeName === "SinglePost"
+      route.routeName === "SelectedMap" ||
+      route.routeName === "ShareMap" ||
+      route.routeName === "PointerSelected" ||
+      route.routeName === "ImageShow" ||
+      route.routeName === "PaidMap" ||
+      route.routeName === "SelectedOfflineMap"
     ) {
       tabBarVisible = false;
     } else {
@@ -304,20 +318,20 @@ const App = createSwitchNavigator(
 
 ////////////////////////// DrawerConfig //////////////////////////
 
-const DrawerConfig = {
-  drawerWidth: Width * 0.73,
-  contentComponent: ({ navigation }) => {
-    return <MenuDrawer navigation={navigation} />;
-  }
-};
+// const DrawerConfig = {
+//   drawerWidth: Width * 0.73,
+//   contentComponent: ({ navigation }) => {
+//     return <MenuDrawer navigation={navigation} />;
+//   }
+// };
 
-const drawerNavigator = createDrawerNavigator(
-  {
-    App
-  },
-  DrawerConfig
-);
+// const drawerNavigator = createDrawerNavigator(
+//   {
+//     App
+//   },
+//   DrawerConfig
+// );
 
 ////////////////////////// DrawerConfig //////////////////////////
 
-export default createAppContainer(drawerNavigator);
+export default createAppContainer(App);

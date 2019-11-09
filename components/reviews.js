@@ -90,9 +90,9 @@ class ReviewList extends React.Component {
               type="ionicon"
               color="white"
               size={Platform.OS === "ios" ? 30 : 40}
-              onPress={e => {
-                this.props.navigation.toggleDrawer(e);
-              }}
+              // onPress={e => {
+              //   this.props.navigation.toggleDrawer(e);
+              // }}
             />
           }
           centerComponent={

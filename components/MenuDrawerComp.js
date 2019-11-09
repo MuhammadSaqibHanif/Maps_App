@@ -57,7 +57,7 @@ class MenuDrawer extends React.Component {
       <TouchableOpacity
         onPress={() => {
           this.props.navigation.navigate(nav);
-          this.props.navigation.toggleDrawer();
+          // this.props.navigation.toggleDrawer();
         }}
       >
         <Text

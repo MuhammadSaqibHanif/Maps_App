@@ -7,13 +7,15 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import { Item, Input, Icon, Button, Textarea } from "native-base";
+import { Item, Icon, Button, Textarea } from "native-base";
 import { Overlay } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 const styles = StyleSheet.create({
   container: {
+    opacity: 0.4,
+    backgroundColor: "rgba(52, 52, 52, 0.8)",
     height: 300,
     width: "100%",
     justifyContent: "flex-end",
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class SelectedMap extends Component {
+class PaidMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,7 +56,7 @@ class SelectedMap extends Component {
     return (
       <View style={{ flex: 1 }}>
         {/* Header */}
-        <View
+        {/* <View
           style={{
             backgroundColor: "#34282C",
             width: "100%",
@@ -82,7 +84,7 @@ class SelectedMap extends Component {
             <Icon type="AntDesign" name="search1" />
             <Input placeholder="Where to" />
           </Item>
-        </View>
+        </View> */}
         {/* Header */}
 
         <Overlay
@@ -151,6 +153,21 @@ class SelectedMap extends Component {
                   longitudeDelta: 0.0121
                 }}
               ></MapView>
+              <TouchableOpacity
+                style={{
+                  marginLeft: 10,
+                  flex: 1,
+                  alignSelf: "flex-start"
+                }}
+                onPress={() => this.props.navigation.goBack()}
+              >
+                <Icon
+                  name="ios-arrow-back"
+                  type="Ionicons"
+                  style={{ color: "black", fontSize: 35 }}
+                />
+              </TouchableOpacity>
+
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("PointerSelected")
@@ -469,45 +486,34 @@ class SelectedMap extends Component {
             </View>
           </View>
         </ScrollView>
-        {/* Footer */}
+
         <View
           style={{
             borderTopWidth: 1,
             borderTopColor: "gray",
-            flexDirection: "row",
-            paddingTop: 2
+            marginTop: 10,
+            marginBottom: 10,
+            width: "90%",
+            alignSelf: "center"
           }}
         >
-          <TouchableOpacity
-            style={{ width: "33%", alignItems: "center" }}
-            onPress={() => this.setState({ isVisible: true })}
-          >
-            <Icon name="hearto" type="AntDesign" style={{}} />
-            <Text style={{ fontSize: 12 }}>Save</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("ShareMap")}
-            style={{ width: "33%", alignItems: "center" }}
-          >
-            <Icon name="paper-plane-o" type="FontAwesome" style={{}} />
-            <Text style={{ fontSize: 12 }}>Share</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("SelectedOfflineMap")}
-            style={{ width: "34%", alignItems: "center" }}
-          >
-            <Icon name="clouddownloado" type="AntDesign" style={{}} />
-            <Text numberOfLines={1} style={{ fontSize: 12 }}>
-              Download for Offline
+          <Button style={{ backgroundColor: "green", marginTop: 10 }}>
+            <Text
+              style={{
+                marginLeft: "auto",
+                color: "black",
+                marginRight: "auto",
+                fontSize: 16,
+                fontWeight: "bold"
+              }}
+            >
+              Unlock
             </Text>
-          </TouchableOpacity>
+          </Button>
         </View>
-        {/* Footer */}
       </View>
     );
   }
 }
 
-export default SelectedMap;
+export default PaidMap;
