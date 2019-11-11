@@ -63,7 +63,7 @@ class Saved extends Component {
   render() {
     const { map_update } = this.state;
     const { rating } = this.props;
-    console.log("map_update >>>", map_update);
+    console.log("this.props.navigation.state >>>", this.props.navigation.state);
 
     return (
       <View>
@@ -159,14 +159,25 @@ class Saved extends Component {
             middle_text_style={{ fontSize: 24, color: "black" }}
             second_icon_path={require("../../assets/images/multiply-black.png")}
             second_icon_style={{ width: 18, height: 18 }}
-            second_icon_function={() => this.props.navigation.goBack()}
+            second_icon_function={() =>
+              // this.props.navigation.state
+              //   ? this.props.navigation.state.params
+              //     ? this.props.navigation.state.params.from
+              //       ? this.props.navigation.state.params.from == "MyAccounts"
+              //         ? this.props.navigation.navigate("MyAccounts")
+              //         : this.props.navigation.goBack()
+              //       : this.props.navigation.goBack()
+              //     : this.props.navigation.goBack()
+              //   :
+              this.props.navigation.goBack()
+            }
           />
         </View>
         {/* Header */}
         <ScrollView>
           <View style={{ marginLeft: "5%", width: "90%" }}>
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              Created by your
+              Created by you
             </Text>
             <View style={{ borderWidth: 0.5, borderRadius: 10, marginTop: 10 }}>
               <Item>
@@ -1003,6 +1014,25 @@ class Saved extends Component {
                   </View>
                 </Card>
               </ScrollView>
+
+              <View
+                style={{
+                  width: "100%",
+                  // backgroundColor: "lightgray",
+                  padding: 10,
+                  flexDirection: "row"
+                }}
+              >
+                <Icon name="home" type="Ionicons" style={{}} />
+                <Text style={{ marginLeft: 5, width: "95%" }}>
+                  {/* <Icon name="ios-arrow-back" type="Ionicons" style={{}} /> */}
+                  TEST xxxxxxxxcvdjkn sdfnjxcn jksnfjn TEST xxx xxxx xcvdjkn
+                  sdfnjxcn jksnfjn TEST xxx TEST xxxxxxxxcvdjkn sdfnjxcn jksnfjn
+                  TEST xxx xxxx xcvdjkn sdfnjxcn jksnfjn TEST xxx TEST
+                  xxxxxxxxcvdjkn sdfnjxcn jksnfjn TEST xxx xxxx xcvdjkn sdfnjxcn
+                  jksnfjn TEST xxx
+                </Text>
+              </View>
             </View>
             {/* </View> */}
           </View>

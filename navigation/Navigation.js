@@ -49,6 +49,15 @@ import SelectedOfflineMap from "../src/screens/SelectedOfflineMap";
 import PointerSelected from "../src/screens/PointerSelected";
 import ImageShow from "../src/screens/ImageShow";
 import PaidMap from "../src/screens/PaidMap";
+import PurchasedMap from "../src/screens/PurchasedMap";
+import AddPointerMyMap from "../src/screens/AddPointerMyMap";
+import ExistingPointerSelected from "../src/screens/ExistingPointerSelected";
+import SearchForLocation from "../src/screens/SearchForLocation";
+import NoPointerYet from "../src/screens/NoPointerYet";
+import CreateLocationSearch from "../src/screens/CreateLocationSearch";
+import CreateSelectIcon from "../src/screens/CreateSelectIcon";
+import CreateEditMap from "../src/screens/CreateEditMap";
+import CreateAddedPointer from "../src/screens/CreateAddedPointer";
 
 const Width = Dimensions.get("window").width;
 
@@ -94,7 +103,9 @@ const ExploreStack = createStackNavigator(
     SelectedOfflineMap,
     PointerSelected,
     ImageShow,
-    PaidMap
+    PaidMap,
+    PurchasedMap,
+    AddPointerMyMap
   },
   {
     headerMode: "none",
@@ -112,6 +123,9 @@ ExploreStack.navigationOptions = ({ navigation }) => {
       route.routeName === "PointerSelected" ||
       route.routeName === "ImageShow" ||
       route.routeName === "PaidMap" ||
+      route.routeName === "ExistingMap" ||
+      route.routeName === "PurchasedMap" ||
+      route.routeName === "AddPointerMyMap" ||
       route.routeName === "SelectedOfflineMap"
     ) {
       tabBarVisible = false;
@@ -135,7 +149,12 @@ ExploreStack.navigationOptions = ({ navigation }) => {
 const CreateStack = createStackNavigator(
   {
     Create,
-    CreatNewMap
+    CreatNewMap,
+    NoPointerYet,
+    CreateLocationSearch,
+    CreateSelectIcon,
+    CreateEditMap,
+    CreateAddedPointer
   },
   {
     headerMode: "none"
@@ -147,8 +166,12 @@ CreateStack.navigationOptions = ({ navigation }) => {
 
   navigation.state.routes.map(route => {
     if (
-      route.routeName === "CreatNewMap"
-      // || route.routeName === "SinglePost"
+      route.routeName === "CreatNewMap" ||
+      route.routeName === "CreateLocationSearch" ||
+      route.routeName === "CreateSelectIcon" ||
+      route.routeName === "CreateEditMap" ||
+      route.routeName === "CreateAddedPointer" ||
+      route.routeName === "NoPointerYet"
     ) {
       tabBarVisible = false;
     } else {
@@ -175,22 +198,40 @@ CreateStack.navigationOptions = ({ navigation }) => {
 
 const MapStack = createStackNavigator(
   {
-    Map
+    Map,
+    ExistingPointerSelected,
+    SearchForLocation
   },
   {
     headerMode: "none"
   }
 );
 
-MapStack.navigationOptions = {
-  tabBarIcon: ({ tintColor }) => (
-    <Icon
-      name="map-marker-radius"
-      type="material-community"
-      color={tintColor}
-      size={30}
-    />
-  )
+MapStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+
+  navigation.state.routes.map(route => {
+    if (
+      route.routeName === "ExistingPointerSelected" ||
+      route.routeName === "SearchForLocation"
+    ) {
+      tabBarVisible = false;
+    } else {
+      tabBarVisible = true;
+    }
+  });
+
+  return {
+    tabBarVisible,
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        name="map-marker-radius"
+        type="material-community"
+        color={tintColor}
+        size={30}
+      />
+    )
+  };
 };
 
 ////////////////////////// MapStack //////////////////////////
@@ -236,7 +277,8 @@ const AccountStack = createStackNavigator(
     Help,
     TermsService,
     FeedBack,
-    Earning
+    Earning,
+    Saved
   },
   {
     headerMode: "none"

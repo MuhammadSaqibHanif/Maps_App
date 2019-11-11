@@ -84,13 +84,14 @@ class FeedBack extends Component {
                         fontSize: 16
                       }}
                     >
-                      Enter Your FeedBack
+                      Submit FeedBack
                     </Text>
                   </Button>
                 ) : (
                   <Button
+                    disabled
                     style={{
-                      backgroundColor: "lightgreen",
+                      // backgroundColor: "lightgreen",
                       width: "50%",
                       marginTop: 10
                     }}

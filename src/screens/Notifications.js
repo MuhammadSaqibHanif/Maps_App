@@ -58,9 +58,23 @@ class Notifications extends Component {
     super(props);
     this.state = {
       value: props.value,
+      value2: props.value2,
+      value3: props.value3,
+      value4: props.value4,
+      value5: props.value5,
+
+      // value: false,
+      // value2: props.value2,
+      // value3: props.value3,
+      // value4: props.value4,
+      // value5: props.value5,
       map_update: false
     };
-    this.toggle = this.toggle.bind(this);
+    this.toggle1 = this.toggle1.bind(this);
+    this.toggle2 = this.toggle2.bind(this);
+    this.toggle3 = this.toggle3.bind(this);
+    this.toggle4 = this.toggle4.bind(this);
+    this.toggle5 = this.toggle5.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,7 +84,7 @@ class Notifications extends Component {
     }
   }
 
-  toggle() {
+  toggle1() {
     // define how we will use LayoutAnimation to give smooth transition between state change
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     const newValue = !this.state.value;
@@ -84,8 +98,64 @@ class Notifications extends Component {
     }
   }
 
+  toggle2() {
+    // define how we will use LayoutAnimation to give smooth transition between state change
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    const newValue = !this.state.value2;
+    this.setState({
+      value2: newValue
+    });
+
+    // fire function if exists
+    if (typeof this.props.onValueChange === "function") {
+      this.props.onValueChange(newValue);
+    }
+  }
+
+  toggle3() {
+    // define how we will use LayoutAnimation to give smooth transition between state change
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    const newValue = !this.state.value3;
+    this.setState({
+      value3: newValue
+    });
+
+    // fire function if exists
+    if (typeof this.props.onValueChange === "function") {
+      this.props.onValueChange(newValue);
+    }
+  }
+
+  toggle4() {
+    // define how we will use LayoutAnimation to give smooth transition between state change
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    const newValue = !this.state.value4;
+    this.setState({
+      value4: newValue
+    });
+
+    // fire function if exists
+    if (typeof this.props.onValueChange === "function") {
+      this.props.onValueChange(newValue);
+    }
+  }
+
+  toggle5() {
+    // define how we will use LayoutAnimation to give smooth transition between state change
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    const newValue = !this.state.value5;
+    this.setState({
+      value5: newValue
+    });
+
+    // fire function if exists
+    if (typeof this.props.onValueChange === "function") {
+      this.props.onValueChange(newValue);
+    }
+  }
+
   render() {
-    const { map_update, value } = this.state;
+    const { map_update, value, value2, value3, value4, value5 } = this.state;
 
     // console.log("map_update >>>", map_update);
 
@@ -143,7 +213,7 @@ class Notifications extends Component {
 
               {/* Switch Button */}
               <TouchableOpacity
-                onPress={this.toggle}
+                onPress={this.toggle1}
                 style={{
                   marginRight: 5
                 }}
@@ -204,16 +274,16 @@ class Notifications extends Component {
 
                 {/* Switch Button */}
                 <TouchableOpacity
-                  onPress={this.toggle}
+                  onPress={this.toggle2}
                   style={{
                     marginRight: 5
                   }}
                 >
                   <View
-                    style={[styles.container, value && styles.activeContainer]}
+                    style={[styles.container, value2 && styles.activeContainer]}
                   >
                     <View style={styles.circle} />
-                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                    <Text style={styles.label}>{value2 ? "YES" : "NO"}</Text>
                   </View>
                 </TouchableOpacity>
                 {/* Switch Button */}
@@ -249,16 +319,16 @@ class Notifications extends Component {
 
                 {/* Switch Button */}
                 <TouchableOpacity
-                  onPress={this.toggle}
+                  onPress={this.toggle3}
                   style={{
                     marginRight: 5
                   }}
                 >
                   <View
-                    style={[styles.container, value && styles.activeContainer]}
+                    style={[styles.container, value3 && styles.activeContainer]}
                   >
                     <View style={styles.circle} />
-                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                    <Text style={styles.label}>{value3 ? "YES" : "NO"}</Text>
                   </View>
                 </TouchableOpacity>
                 {/* Switch Button */}
@@ -294,16 +364,16 @@ class Notifications extends Component {
 
                 {/* Switch Button */}
                 <TouchableOpacity
-                  onPress={this.toggle}
+                  onPress={this.toggle4}
                   style={{
                     marginRight: 5
                   }}
                 >
                   <View
-                    style={[styles.container, value && styles.activeContainer]}
+                    style={[styles.container, value4 && styles.activeContainer]}
                   >
                     <View style={styles.circle} />
-                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                    <Text style={styles.label}>{value4 ? "YES" : "NO"}</Text>
                   </View>
                 </TouchableOpacity>
                 {/* Switch Button */}
@@ -341,16 +411,16 @@ class Notifications extends Component {
 
                 {/* Switch Button */}
                 <TouchableOpacity
-                  onPress={this.toggle}
+                  onPress={this.toggle5}
                   style={{
                     marginRight: 5
                   }}
                 >
                   <View
-                    style={[styles.container, value && styles.activeContainer]}
+                    style={[styles.container, value5 && styles.activeContainer]}
                   >
                     <View style={styles.circle} />
-                    <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
+                    <Text style={styles.label}>{value5 ? "YES" : "NO"}</Text>
                   </View>
                 </TouchableOpacity>
                 {/* Switch Button */}

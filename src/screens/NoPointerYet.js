@@ -7,15 +7,13 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import { Item, Icon, Button, Textarea } from "native-base";
+import { Item, Input, Icon, Button, Textarea } from "native-base";
 import { Overlay } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 const styles = StyleSheet.create({
   container: {
-    opacity: 0.4,
-    backgroundColor: "rgba(52, 52, 52, 0.8)",
     height: 300,
     width: "100%",
     justifyContent: "flex-end",
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PaidMap extends Component {
+class NoPointerYet extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +54,7 @@ class PaidMap extends Component {
     return (
       <View style={{ flex: 1 }}>
         {/* Header */}
-        {/* <View
+        <View
           style={{
             backgroundColor: "#34282C",
             width: "100%",
@@ -81,10 +79,16 @@ class PaidMap extends Component {
               paddingHorizontal: 5
             }}
           >
-            <Icon type="AntDesign" name="search1" />
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("CreateLocationSearch")
+              }
+            >
+              <Icon type="AntDesign" name="search1" />
+            </TouchableOpacity>
             <Input placeholder="Where to" />
           </Item>
-        </View> */}
+        </View>
         {/* Header */}
 
         <Overlay
@@ -154,21 +158,6 @@ class PaidMap extends Component {
                 }}
               ></MapView>
               <TouchableOpacity
-                style={{
-                  marginLeft: 10,
-                  flex: 1,
-                  alignSelf: "flex-start"
-                }}
-                onPress={() => this.props.navigation.goBack()}
-              >
-                <Icon
-                  name="ios-arrow-back"
-                  type="Ionicons"
-                  style={{ color: "black", fontSize: 35 }}
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("PointerSelected")
                 }
@@ -216,7 +205,14 @@ class PaidMap extends Component {
               <View style={{ marginLeft: "5%", width: "90%", marginTop: 5 }}>
                 <View style={{ flexDirection: "row" }}>
                   <View style={{ flexDirection: "row" }}>
-                    <Icon name="map-marker" type="FontAwesome" style={{}} />
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate("CreateSelectIcon")
+                      }
+                    >
+                      <Icon name="map-marker" type="FontAwesome" style={{}} />
+                    </TouchableOpacity>
+
                     <View style={{ marginLeft: "3%" }}>
                       <Text
                         style={{
@@ -486,37 +482,9 @@ class PaidMap extends Component {
             </View>
           </View>
         </ScrollView>
-
-        <View
-          style={{
-            borderTopWidth: 1,
-            borderTopColor: "gray",
-            marginTop: 10,
-            marginBottom: 10,
-            width: "90%",
-            alignSelf: "center"
-          }}
-        >
-          <Button
-            onPress={() => this.props.navigation.navigate("PurchasedMap")}
-            style={{ backgroundColor: "green", marginTop: 10 }}
-          >
-            <Text
-              style={{
-                marginLeft: "auto",
-                color: "black",
-                marginRight: "auto",
-                fontSize: 16,
-                fontWeight: "bold"
-              }}
-            >
-              <Icon name="home" /> {"  "}Unlock for $2
-            </Text>
-          </Button>
-        </View>
       </View>
     );
   }
 }
 
-export default PaidMap;
+export default NoPointerYet;

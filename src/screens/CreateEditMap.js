@@ -1,60 +1,12 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  LayoutAnimation,
-  StyleSheet
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
 import { Icon, ListItem, List, Left, Right } from "native-base";
 import { Switch } from "react-native-switch";
 import HeaderITI from "../components/HeaderITI";
 // import { Rating, AirbnbRating } from 'react-native-elements';
 import { Textarea, Button, Picker } from "native-base";
-
-const styles = StyleSheet.create({
-  container: {
-    width: 80,
-    height: 30,
-    backgroundColor: "grey",
-    flexDirection: "row",
-    overflow: "visible",
-    borderRadius: 15,
-    shadowColor: "black",
-    shadowOpacity: 1.0,
-    shadowOffset: {
-      width: -2,
-      height: 2
-    }
-  },
-  circle: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: "white",
-    marginTop: -2,
-    shadowColor: "black",
-    shadowOpacity: 1.0,
-    shadowOffset: {
-      width: 2,
-      height: 2
-    }
-  },
-  activeContainer: {
-    backgroundColor: "blue",
-    flexDirection: "row-reverse"
-  },
-  label: {
-    alignSelf: "center",
-    backgroundColor: "transparent",
-    paddingHorizontal: 6,
-    fontWeight: "bold"
-  }
-});
-
-class CreatNewMap extends Component {
+import ModalDelete from "./ModalDelete";
+class EditMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,30 +18,17 @@ class CreatNewMap extends Component {
       starCount: 3.5,
       selected: undefined,
       pick: undefined,
-      value: props.value
+      Alert_Visibility: false
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // update local state.value if props.value changes....
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value });
-    }
+  Show_Custom_Alert(visible) {
+    this.setState({ Alert_Visibility: visible });
   }
-  toggle() {
-    // define how we will use LayoutAnimation to give smooth transition between state change
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    const newValue = !this.state.value;
-    this.setState({
-      value: newValue
-    });
 
-    // fire function if exists
-    if (typeof this.props.onValueChange === "function") {
-      this.props.onValueChange(newValue);
-    }
-  }
+  ok_Button = () => {
+    Alert.alert("OK Button Clicked.");
+  };
 
   onValueChange(value) {
     this.setState({
@@ -104,10 +43,9 @@ class CreatNewMap extends Component {
     console.log("SSDSDDS", value);
   }
   render() {
-    const { map_update, price, value } = this.state;
+    const { map_update, price } = this.state;
     const { rating } = this.props;
-
-    console.log("this.props.navigation >>>", this.props.navigation);
+    console.log("map_update >>>", this.props.navigation.state.params);
 
     return (
       <View>
@@ -124,7 +62,7 @@ class CreatNewMap extends Component {
             first_icon_path={{}}
             first_icon_style={{ width: 21, height: 21 }}
             first_icon_function={() => true}
-            middle_text="Create a New Map"
+            middle_text="Edit Your Map"
             middle_text_style={{ fontSize: 24, color: "black" }}
             second_icon_path={require("../../assets/images/multiply-black.png")}
             second_icon_style={{ width: 18, height: 18 }}
@@ -141,7 +79,7 @@ class CreatNewMap extends Component {
                 bordered
                 onKeyPress={() => this.setState({ given: true })}
                 style={{ marginTop: 20 }}
-                placeholder="Enter a name for your map"
+                placeholder={this.props.navigation.state.params.title}
               />
 
               <View style={{ marginTop: 20 }}>
@@ -153,7 +91,7 @@ class CreatNewMap extends Component {
                   bordered
                   onKeyPress={() => this.setState({ given: true })}
                   style={{ marginTop: 5 }}
-                  placeholder="Tell us more about what your map will contain.."
+                  placeholder={this.props.navigation.state.params.text}
                 />
               </View>
 
@@ -188,18 +126,22 @@ class CreatNewMap extends Component {
                     <Text style={{ fontSize: 16, width: "80%" }}>
                       Do you want to change people to access to your map?
                     </Text>
-
-                    <TouchableOpacity onPress={this.toggle}>
-                      <View
-                        style={[
-                          styles.container,
-                          value && styles.activeContainer
-                        ]}
-                      >
-                        <View style={styles.circle} />
-                        <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
-                      </View>
-                    </TouchableOpacity>
+                    <Switch
+                      value={map_update}
+                      onValueChange={val => {
+                        this.setState({
+                          map_update: !map_update
+                        });
+                      }}
+                      disabled={false}
+                      activeText="On"
+                      inActiveText={"Off"}
+                      backgroundActive={"green"}
+                      backgroundInactive={"gray"}
+                      circleActiveColor={"#30a566"}
+                      circleInActiveColor={"#000000"}
+                      style={{}}
+                    />
                   </View>
                   {this.state.map_update == true && (
                     <View>
@@ -222,17 +164,22 @@ class CreatNewMap extends Component {
                     <Text style={{ fontSize: 16, width: "80%" }}>
                       Do you want to change people to access to your map?
                     </Text>
-                    <TouchableOpacity onPress={this.toggle}>
-                      <View
-                        style={[
-                          styles.container,
-                          value && styles.activeContainer
-                        ]}
-                      >
-                        <View style={styles.circle} />
-                        <Text style={styles.label}>{value ? "YES" : "NO"}</Text>
-                      </View>
-                    </TouchableOpacity>
+                    <Switch
+                      value={price}
+                      onValueChange={val => {
+                        this.setState({
+                          price: !price
+                        });
+                      }}
+                      disabled={false}
+                      activeText="On"
+                      inActiveText={"Off"}
+                      backgroundActive={"green"}
+                      backgroundInactive={"gray"}
+                      circleActiveColor={"#30a566"}
+                      circleInActiveColor={"#000000"}
+                      style={{}}
+                    />
                   </View>
 
                   {this.state.price == true && (
@@ -247,6 +194,11 @@ class CreatNewMap extends Component {
                     </View>
                   )}
 
+                  {/* <Text style={{borderBottomWidth:1,marginLeft:'auto',marginRight:'auto',marginTop:20,fontSize:18,color:'#736F6E'}} onPress={()=>this.setState({btn:true})}>Delete Your Map</Text> */}
+                  {/* {this.state.btn==true &&
+                <ModalDelete/>
+            } */}
+                  <ModalDelete />
                   <View
                     style={{
                       borderTopWidth: 1,
@@ -256,9 +208,6 @@ class CreatNewMap extends Component {
                     }}
                   >
                     <Button
-                      onPress={() =>
-                        this.props.navigation.navigate("NoPointerYet")
-                      }
                       style={{ backgroundColor: "lightgreen", marginTop: 10 }}
                     >
                       <Text
@@ -269,7 +218,7 @@ class CreatNewMap extends Component {
                           fontWeight: "bold"
                         }}
                       >
-                        Create
+                        Save Changes
                       </Text>
                     </Button>
                   </View>
@@ -377,4 +326,4 @@ class CreatNewMap extends Component {
   }
 }
 
-export default CreatNewMap;
+export default EditMap;

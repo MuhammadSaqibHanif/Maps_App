@@ -7,15 +7,13 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import { Item, Icon, Button, Textarea } from "native-base";
+import { Item, Input, Icon, Button, Textarea } from "native-base";
 import { Overlay } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 const styles = StyleSheet.create({
   container: {
-    opacity: 0.4,
-    backgroundColor: "rgba(52, 52, 52, 0.8)",
     height: 300,
     width: "100%",
     justifyContent: "flex-end",
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PaidMap extends Component {
+class PurchasedMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,6 +45,12 @@ class PaidMap extends Component {
     });
   }
 
+  componentDidMount() {
+    this.setState({
+      isVisible: true
+    });
+  }
+
   render() {
     const { map_update } = this.state;
     const { rating } = this.props;
@@ -56,7 +60,7 @@ class PaidMap extends Component {
     return (
       <View style={{ flex: 1 }}>
         {/* Header */}
-        {/* <View
+        <View
           style={{
             backgroundColor: "#34282C",
             width: "100%",
@@ -84,7 +88,7 @@ class PaidMap extends Component {
             <Icon type="AntDesign" name="search1" />
             <Input placeholder="Where to" />
           </Item>
-        </View> */}
+        </View>
         {/* Header */}
 
         <Overlay
@@ -153,21 +157,6 @@ class PaidMap extends Component {
                   longitudeDelta: 0.0121
                 }}
               ></MapView>
-              <TouchableOpacity
-                style={{
-                  marginLeft: 10,
-                  flex: 1,
-                  alignSelf: "flex-start"
-                }}
-                onPress={() => this.props.navigation.goBack()}
-              >
-                <Icon
-                  name="ios-arrow-back"
-                  type="Ionicons"
-                  style={{ color: "black", fontSize: 35 }}
-                />
-              </TouchableOpacity>
-
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("PointerSelected")
@@ -486,37 +475,45 @@ class PaidMap extends Component {
             </View>
           </View>
         </ScrollView>
-
+        {/* Footer */}
         <View
           style={{
             borderTopWidth: 1,
             borderTopColor: "gray",
-            marginTop: 10,
-            marginBottom: 10,
-            width: "90%",
-            alignSelf: "center"
+            flexDirection: "row",
+            paddingTop: 2
           }}
         >
-          <Button
-            onPress={() => this.props.navigation.navigate("PurchasedMap")}
-            style={{ backgroundColor: "green", marginTop: 10 }}
+          <TouchableOpacity
+            style={{ width: "33%", alignItems: "center" }}
+            onPress={() => this.setState({ isVisible: true })}
           >
-            <Text
-              style={{
-                marginLeft: "auto",
-                color: "black",
-                marginRight: "auto",
-                fontSize: 16,
-                fontWeight: "bold"
-              }}
-            >
-              <Icon name="home" /> {"  "}Unlock for $2
+            <Icon name="hearto" type="AntDesign" style={{}} />
+            <Text style={{ fontSize: 12 }}>Purchased</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("ShareMap")}
+            style={{ width: "33%", alignItems: "center" }}
+          >
+            <Icon name="paper-plane-o" type="FontAwesome" style={{}} />
+            <Text style={{ fontSize: 12 }}>Share</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("SelectedOfflineMap")}
+            style={{ width: "34%", alignItems: "center" }}
+          >
+            <Icon name="clouddownloado" type="AntDesign" style={{}} />
+            <Text numberOfLines={1} style={{ fontSize: 12 }}>
+              Download for Offline
             </Text>
-          </Button>
+          </TouchableOpacity>
         </View>
+        {/* Footer */}
       </View>
     );
   }
 }
 
-export default PaidMap;
+export default PurchasedMap;

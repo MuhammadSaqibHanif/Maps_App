@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PointerSelected extends Component {
+class ExistingPointerSelected extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,9 +42,9 @@ class PointerSelected extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      isVisible: true
-    });
+    // this.setState({
+    //   isVisible: true
+    // });
   }
 
   onStarRatingPress(rating) {
@@ -72,16 +72,16 @@ class PointerSelected extends Component {
             alignItems: "center",
             flexDirection: "row",
             padding: 10,
-            justifyContent: "space-between"
+            justifyContent: "center"
           }}
         >
-          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+          {/* <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
             <Icon
               name="ios-arrow-back"
               type="Ionicons"
               style={{ color: "white" }}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Item
             style={{
               backgroundColor: "white",
@@ -229,27 +229,6 @@ class PointerSelected extends Component {
                 </Text>
               </View>
 
-              <View
-                style={{
-                  backgroundColor: "red",
-                  paddingVertical: 3,
-                  marginVertical: 5
-                }}
-              >
-                <Text style={{ textAlign: "center" }}>Permanently Closed</Text>
-              </View>
-
-              <View
-                style={{
-                  backgroundColor: "red",
-                  opacity: 0.6,
-                  paddingVertical: 3,
-                  marginVertical: 5
-                }}
-              >
-                <Text style={{ textAlign: "center" }}>Currently Closed</Text>
-              </View>
-
               <View style={{}}>
                 <Text style={{ marginLeft: 5, textAlign: "center" }}>
                   My favourite place to go for launch arround the capital that
@@ -267,62 +246,6 @@ class PointerSelected extends Component {
                 >
                   Read more
                 </Text>
-              </View>
-
-              <View
-                style={{ marginTop: "5%", width: "90%", alignSelf: "center" }}
-              >
-                <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("ImageShow", {
-                        image:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      })
-                    }
-                  >
-                    <Image
-                      style={{ width: 60, height: 60, marginRight: 10 }}
-                      source={{
-                        uri:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      }}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("ImageShow", {
-                        image:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      })
-                    }
-                  >
-                    <Image
-                      style={{ width: 60, height: 60, marginRight: 10 }}
-                      source={{
-                        uri:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      }}
-                    />
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("ImageShow", {
-                        image:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      })
-                    }
-                  >
-                    <Image
-                      style={{ width: 60, height: 60, marginRight: 10 }}
-                      source={{
-                        uri:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      }}
-                    />
-                  </TouchableOpacity>
-                </View>
               </View>
 
               <View
@@ -349,6 +272,30 @@ class PointerSelected extends Component {
                   <Text style={{ color: "blue" }}>020 8122 0700</Text>
                 </View>
                 <View style={{ width: "55%" }}>
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "green",
+                      flexDirection: "row",
+                      height: 40,
+                      width: "100%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginBottom: 10
+                    }}
+                  >
+                    <Image
+                      source={require("../../assets/images/facebook-logo.png")}
+                      style={{ width: 15, height: 15, marginRight: 5 }}
+                    />
+                    <Text
+                      style={{
+                        textAlign: "center"
+                      }}
+                    >
+                      Directions
+                    </Text>
+                  </TouchableOpacity>
+
                   <TouchableOpacity
                     style={{
                       backgroundColor: "green",
@@ -387,11 +334,34 @@ class PointerSelected extends Component {
                         textAlign: "center"
                       }}
                     >
-                      Directions
+                      Share
                     </Text>
                   </TouchableOpacity>
+                </View>
+              </View>
 
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginTop: 15,
+                  width: "100%",
+                  alignSelf: "center",
+                  backgroundColor: "#f6e9e0",
+                  padding: 10
+                }}
+              >
+                <View style={{ width: "45%" }}>
+                  <Text style={{ fontWeight: "bold" }}>Pointer from:</Text>
+                  <Text>Brunch spot by</Text>
+                  <Text>JessieCat</Text>
+                </View>
+
+                <View style={{ width: "55%" }}>
                   <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate("AddPointerMyMap")
+                    }
                     style={{
                       backgroundColor: "green",
                       flexDirection: "row",
@@ -406,26 +376,6 @@ class PointerSelected extends Component {
                       source={require("../../assets/images/facebook-logo.png")}
                       style={{ width: 15, height: 15, marginRight: 5 }}
                     />
-                    <Text
-                      style={{
-                        textAlign: "center"
-                      }}
-                    >
-                      Share with a Friend
-                    </Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("AddPointerMyMap")
-                    }
-                    style={{
-                      backgroundColor: "green",
-                      height: 40,
-                      width: "100%",
-                      justifyContent: "center"
-                    }}
-                  >
                     <Text
                       style={{
                         textAlign: "center"
@@ -681,4 +631,4 @@ class PointerSelected extends Component {
   }
 }
 
-export default PointerSelected;
+export default ExistingPointerSelected;

@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity
+} from "react-native";
 import {
   Container,
   Header,
@@ -99,7 +106,10 @@ class ExistingMap extends Component {
           <ScrollView>
             <View style={{ width: "100%", marginBottom: 30 }}>
               <View style={{ height: 350 }}>
-                <View
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate("CreateAddedPointer")
+                  }
                   style={{
                     borderWidth: 1,
                     borderRadius: 5,
@@ -113,7 +123,7 @@ class ExistingMap extends Component {
                   <Text style={{ textAlign: "center", color: "white" }}>
                     ...or tap anywhere to add another pointer
                   </Text>
-                </View>
+                </TouchableOpacity>
                 {/* <Image
                   style={{ width: "100%", height: "90%" }}
                   source={require("../../assets/images/map.jpg")}
@@ -148,7 +158,7 @@ class ExistingMap extends Component {
                     type="EvilIcons"
                     style={{ marginRight: 15 }}
                     onPress={() =>
-                      this.props.navigation.navigate("EditMap", {
+                      this.props.navigation.navigate("CreateEditMap", {
                         text:
                           "My favourite place to go for launch arround the capital that are fantastic gluten free optional are All tried and tasted",
                         title: "Gluten Free Launch Spots"

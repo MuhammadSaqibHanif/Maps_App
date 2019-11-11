@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PointerSelected extends Component {
+class SearchForLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,9 +42,9 @@ class PointerSelected extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      isVisible: true
-    });
+    // this.setState({
+    //   isVisible: true
+    // });
   }
 
   onStarRatingPress(rating) {
@@ -229,27 +229,6 @@ class PointerSelected extends Component {
                 </Text>
               </View>
 
-              <View
-                style={{
-                  backgroundColor: "red",
-                  paddingVertical: 3,
-                  marginVertical: 5
-                }}
-              >
-                <Text style={{ textAlign: "center" }}>Permanently Closed</Text>
-              </View>
-
-              <View
-                style={{
-                  backgroundColor: "red",
-                  opacity: 0.6,
-                  paddingVertical: 3,
-                  marginVertical: 5
-                }}
-              >
-                <Text style={{ textAlign: "center" }}>Currently Closed</Text>
-              </View>
-
               <View style={{}}>
                 <Text style={{ marginLeft: 5, textAlign: "center" }}>
                   My favourite place to go for launch arround the capital that
@@ -267,62 +246,6 @@ class PointerSelected extends Component {
                 >
                   Read more
                 </Text>
-              </View>
-
-              <View
-                style={{ marginTop: "5%", width: "90%", alignSelf: "center" }}
-              >
-                <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("ImageShow", {
-                        image:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      })
-                    }
-                  >
-                    <Image
-                      style={{ width: 60, height: 60, marginRight: 10 }}
-                      source={{
-                        uri:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      }}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("ImageShow", {
-                        image:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      })
-                    }
-                  >
-                    <Image
-                      style={{ width: 60, height: 60, marginRight: 10 }}
-                      source={{
-                        uri:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      }}
-                    />
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate("ImageShow", {
-                        image:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      })
-                    }
-                  >
-                    <Image
-                      style={{ width: 60, height: 60, marginRight: 10 }}
-                      source={{
-                        uri:
-                          "https://cdn.pixabay.com/photo/2019/10/17/14/52/white-4557097__340.jpg"
-                      }}
-                    />
-                  </TouchableOpacity>
-                </View>
               </View>
 
               <View
@@ -681,4 +604,4 @@ class PointerSelected extends Component {
   }
 }
 
-export default PointerSelected;
+export default SearchForLocation;

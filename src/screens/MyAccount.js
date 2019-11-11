@@ -71,7 +71,10 @@ class MyAccount extends Component {
                   No, Cancel
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{ width: "50%" }}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Register")}
+                style={{ width: "50%" }}
+              >
                 <Text
                   style={{ textAlignVertical: "center", textAlign: "center" }}
                 >
@@ -133,7 +136,11 @@ class MyAccount extends Component {
 
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Saved")}
+            onPress={() =>
+              this.props.navigation.navigate("Saved", {
+                from: "MyAccounts"
+              })
+            }
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
