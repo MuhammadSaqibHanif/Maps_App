@@ -35,7 +35,8 @@ class NoPointerYet extends Component {
       input: null,
       text: null,
       cmt: false,
-      heart: false
+      heart: false,
+      locationName: "Glutens Free Launch Spots"
     };
   }
 
@@ -84,9 +85,9 @@ class NoPointerYet extends Component {
                 this.props.navigation.navigate("CreateLocationSearch")
               }
             >
-              <Icon type="AntDesign" name="search1" />
+              <Icon name="search" />
             </TouchableOpacity>
-            <Input placeholder="Where to" />
+            <Input placeholder="Search for your first pointer..." />
           </Item>
         </View>
         {/* Header */}
@@ -146,6 +147,25 @@ class NoPointerYet extends Component {
         {/* Body */}
         <ScrollView>
           <View style={{ width: "100%", marginBottom: 30 }}>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("CreateAddedPointer")
+              }
+              style={{
+                borderWidth: 1,
+                borderRadius: 5,
+                width: "75%",
+                justifyContent: "center",
+                height: 40,
+                backgroundColor: "#34282C",
+                marginLeft: 10,
+                marginTop: 10
+              }}
+            >
+              <Text style={{ textAlign: "center", color: "white" }}>
+                ...or tap anywhere to add another pointer
+              </Text>
+            </TouchableOpacity>
             <View style={styles.container}>
               <MapView
                 provider={PROVIDER_GOOGLE}
@@ -157,33 +177,93 @@ class NoPointerYet extends Component {
                   longitudeDelta: 0.0121
                 }}
               ></MapView>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate("PointerSelected")
-                }
-                style={{
-                  width: 80,
-                  height: 30,
-                  backgroundColor: "blue",
-                  alignSelf: "flex-start"
-                }}
-              ></TouchableOpacity>
             </View>
 
             <View style={{ marginTop: 0, marginBottom: 30 }}>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "row", marginTop: 5 }}>
                 <Text
                   style={{
                     fontWeight: "bold",
-                    fontSize: 20,
+                    fontSize: 18,
+                    color: "white",
                     marginLeft: "auto",
                     marginRight: "auto"
                   }}
                 >
-                  Glutens Free Launch Spots
+                  x
+                </Text>
+                <View style={{ flexDirection: "row" }}>
+                  {this.state.editLocationName ? (
+                    <View style={{ flexDirection: "row" }}>
+                      <Item
+                        style={{
+                          backgroundColor: "white",
+                          height: 35,
+                          width: "80%",
+                          paddingHorizontal: 5
+                        }}
+                      >
+                        <Input
+                          placeholder=" "
+                          value={this.state.locationName}
+                        />
+                      </Item>
+                      <TouchableOpacity
+                        onPress={() =>
+                          this.setState({
+                            editLocationName: false
+                          })
+                        }
+                        style={{ alignSelf: "center", marginLeft: 5 }}
+                      >
+                        <Icon
+                          type="AntDesign"
+                          name="search1"
+                          style={{ fontSize: 20 }}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  ) : (
+                    <View style={{ flexDirection: "row" }}>
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: 18,
+                          marginLeft: "auto",
+                          marginRight: "auto"
+                        }}
+                      >
+                        {this.state.locationName}
+                      </Text>
+                      <TouchableOpacity
+                        onPress={() =>
+                          this.setState({
+                            editLocationName: true
+                          })
+                        }
+                        style={{ alignSelf: "center", marginLeft: 5 }}
+                      >
+                        <Icon
+                          type="AntDesign"
+                          name="search1"
+                          style={{ fontSize: 20 }}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </View>
+
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 18,
+                    marginLeft: "auto",
+                    marginRight: "auto"
+                  }}
+                >
+                  X
                 </Text>
               </View>
-
               <View style={{}}>
                 <Text style={{ marginLeft: 5, textAlign: "center" }}>
                   My favourite place to go for launch arround the capital that
@@ -193,7 +273,7 @@ class NoPointerYet extends Component {
                   style={{
                     textAlign: "center",
                     color: "gray",
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: "bold",
                     marginTop: 2
                   }}
@@ -202,283 +282,31 @@ class NoPointerYet extends Component {
                 </Text>
               </View>
 
-              <View style={{ marginLeft: "5%", width: "90%", marginTop: 5 }}>
-                <View style={{ flexDirection: "row" }}>
-                  <View style={{ flexDirection: "row" }}>
-                    <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate("CreateSelectIcon")
-                      }
-                    >
-                      <Icon name="map-marker" type="FontAwesome" style={{}} />
-                    </TouchableOpacity>
-
-                    <View style={{ marginLeft: "3%" }}>
-                      <Text
-                        style={{
-                          marginLeft: "3%",
-                          fontSize: 14,
-                          fontWeight: "bold"
-                        }}
-                      >
-                        1 Pointer
-                      </Text>
-                      <Text
-                        style={{
-                          marginLeft: "3%",
-                          fontSize: 12,
-                          color: "gray"
-                        }}
-                      >
-                        (1 Currently open)
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View style={{ flexDirection: "row", marginLeft: 60 }}>
-                    <Icon name="hearto" type="AntDesign" style={{}} />
-                    <View style={{ marginLeft: "3%" }}>
-                      <Text
-                        style={{
-                          marginLeft: "3%",
-                          fontSize: 16,
-                          fontWeight: "bold"
-                        }}
-                      >
-                        0 Save
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={{ flexDirection: "row", marginTop: 5 }}>
-                  <View style={{ flexDirection: "row" }}>
-                    <StarRating
-                      disabled={false}
-                      maxStars={5}
-                      rating={this.state.starCount}
-                      selectedStar={rating => this.onStarRatingPress(rating)}
-                      fullStarColor={"green"}
-                      starSize={15}
-                    />
-                    <Text style={{ marginLeft: 5 }}>86 reviews</Text>
-                  </View>
-
-                  <View style={{ flexDirection: "row", marginLeft: 48 }}>
-                    <Icon name="clockcircleo" type="AntDesign" style={{}} />
-                    <View style={{ marginLeft: "3%" }}>
-                      <Text
-                        style={{
-                          marginLeft: "3%",
-                          fontSize: 14,
-                          color: "gray"
-                        }}
-                      >
-                        Last Updated
-                      </Text>
-                      <Text
-                        style={{
-                          marginLeft: "3%",
-                          fontSize: 14,
-                          color: "gray",
-                          fontWeight: "bold"
-                        }}
-                      >
-                        9th Jun 2019
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View style={{ marginTop: "5%", marginLeft: "5%", width: "90%" }}>
-                <View style={{ flexDirection: "row" }}>
-                  <Image
-                    style={{ width: 50, height: 50 }}
-                    source={require("../../assets/images/img.jpg")}
-                  />
-                  <View style={{ marginTop: -5 }}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        fontWeight: "bold",
-                        marginLeft: 5
-                      }}
-                    >
-                      EveBradFord
-                    </Text>
-                    <View style={{ width: 100, marginLeft: 5 }}>
-                      <StarRating
-                        disabled={false}
-                        maxStars={5}
-                        rating={this.state.starCount}
-                        selectedStar={rating => this.onStarRatingPress(rating)}
-                        fullStarColor={"green"}
-                        starSize={10}
-                        starStyle={{}}
-                      />
-                    </View>
-                    <Text style={{ marginLeft: 5, width: "50%" }}>
-                      Thank you Jan for all your faboluse suggestion My
-                      Favourite is tell your
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={{ flexDirection: "row", marginTop: "5%" }}>
-                  <Image
-                    style={{ width: 50, height: 50 }}
-                    source={require("../../assets/images/img.jpg")}
-                  />
-                  <View style={{ marginTop: -5 }}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        fontWeight: "bold",
-                        marginLeft: 5
-                      }}
-                    >
-                      EveBradFord
-                    </Text>
-                    <View style={{ width: 100, marginLeft: 5 }}>
-                      <StarRating
-                        disabled={false}
-                        maxStars={5}
-                        rating={this.state.starCount}
-                        selectedStar={rating => this.onStarRatingPress(rating)}
-                        fullStarColor={"green"}
-                        starSize={10}
-                        starStyle={{}}
-                      />
-                    </View>
-                    <Text style={{ marginLeft: 5, width: "50%" }}>
-                      Thank you Jan for all your faboluse suggestion My
-                      Favourite is tell your
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={{ flexDirection: "row", marginTop: "5%" }}>
-                  <Image
-                    style={{ width: 50, height: 50 }}
-                    source={require("../../assets/images/img.jpg")}
-                  />
-                  <View style={{ marginTop: -5 }}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        fontWeight: "bold",
-                        marginLeft: 5
-                      }}
-                    >
-                      EveBradFord
-                    </Text>
-                    <View style={{ width: 100, marginLeft: 5 }}>
-                      <StarRating
-                        disabled={false}
-                        maxStars={5}
-                        rating={this.state.starCount}
-                        selectedStar={rating => this.onStarRatingPress(rating)}
-                        fullStarColor={"green"}
-                        starSize={10}
-                        starStyle={{}}
-                      />
-                    </View>
-                    <Text style={{ marginLeft: 5, width: "50%" }}>
-                      Thank you Jan for all your faboluse suggestion My
-                      Favourite is tell your
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={{ marginTop: 15 }}>
-                  <Text
-                    style={{
-                      color: "green",
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontSize: 16
-                    }}
-                  >
-                    Read More Reviews
-                  </Text>
-                </View>
-
-                <View style={{ flexDirection: "row", marginTop: "5%" }}>
-                  <Image
-                    style={{ width: 60, height: 60 }}
-                    source={require("../../assets/images/img.jpg")}
-                  />
-                  <View style={{}}>
-                    <View style={{ width: 100, marginLeft: 15 }}>
-                      <StarRating
-                        disabled={false}
-                        maxStars={5}
-                        rating={this.state.starCount}
-                        selectedStar={rating => this.onStarRatingPress(rating)}
-                        fullStarColor={"green"}
-                        starSize={10}
-                        starStyle={{}}
-                      />
-                    </View>
-                    <View style={{ width: "90%", marginLeft: "5%" }}>
-                      <Textarea
-                        rowSpan={3}
-                        bordered
-                        placeholder="Textarea"
-                        style={{ width: 200, borderRadius: 10 }}
-                        onChangeText={text => {
-                          this.setState({ text, cmt: true });
-                        }}
-                      />
-                    </View>
-                  </View>
-                </View>
-
-                {this.state.cmt == true ? (
-                  <View style={{ marginTop: "5%" }}>
-                    <Button
-                      style={{
-                        backgroundColor: "lightgreen",
-                        width: 100,
-                        marginLeft: "25%"
-                      }}
-                    >
-                      <Text
-                        style={{
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          fontSize: 18,
-                          fontWeight: "bold"
-                        }}
-                      >
-                        Submit
-                      </Text>
-                    </Button>
-                  </View>
-                ) : (
-                  <View style={{ marginTop: "5%" }}>
-                    <Button
-                      style={{
-                        backgroundColor: "lightgreen",
-                        width: 150,
-                        marginLeft: "25%"
-                      }}
-                    >
-                      <Text
-                        style={{
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          fontSize: 18,
-                          fontWeight: "bold"
-                        }}
-                      >
-                        Add to Comment
-                      </Text>
-                    </Button>
-                  </View>
-                )}
-              </View>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "green",
+                  flexDirection: "row",
+                  height: 40,
+                  width: "80%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "center",
+                  marginBottom: 10,
+                  marginTop: 30
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/facebook-logo.png")}
+                  style={{ width: 15, height: 15, marginRight: 5 }}
+                />
+                <Text
+                  style={{
+                    textAlign: "center"
+                  }}
+                >
+                  Add to Map
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
